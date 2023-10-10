@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import com.fashion.web.entidades.Imagen;
 import com.fashion.web.entidades.Usuario;
@@ -24,6 +25,7 @@ import com.fashion.web.servicios.ImagenServicio;
 import com.fashion.web.servicios.UsuarioServicio;
 
 @Controller
+@RestController
 @CrossOrigin(origins="*")
 @RequestMapping("/usuario")
 public class UsuarioControlador {
