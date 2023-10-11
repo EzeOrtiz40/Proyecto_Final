@@ -1,6 +1,5 @@
 package com.fashion.web.controlador;
 
-
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -25,8 +24,8 @@ import com.fashion.web.servicios.ImagenServicio;
 import com.fashion.web.servicios.UsuarioServicio;
 
 @Controller
-@RestController
-@CrossOrigin(origins="*")
+// @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/usuario")
 public class UsuarioControlador {
 
@@ -36,20 +35,22 @@ public class UsuarioControlador {
     private ImagenServicio imagenServicio;
 
     @GetMapping("/buscar/{id}")
-    public Usuario getUsuarioPorId(@PathVariable Long id){
+    public Usuario getUsuarioPorId(@PathVariable Long id) {
         return usuarioServicio.buscarUsuarioPorId(id);
     }
-    
+
     @GetMapping("/usuarios")
-    public List<Usuario> getUsuarios(){
+    public List<Usuario> getUsuarios() {
         return usuarioServicio.listarUsuarios();
     }
+
     @GetMapping("/email/{email}")
-    public Usuario getEmail(@PathVariable String email ){
+    public Usuario getEmail(@PathVariable String email) {
         return usuarioServicio.buscarPorEmail(email);
     }
+
     @GetMapping("/nombre/{nombre}/lista")
-    public List<Usuario> getNombres(@PathVariable String nombre){
+    public List<Usuario> getNombres(@PathVariable String nombre) {
         return usuarioServicio.buscarPorNombre(nombre);
     }
 
@@ -65,9 +66,16 @@ public class UsuarioControlador {
         return new ResponseEntity<byte[]>(imagen, headers, HttpStatus.OK);
     }
 
+    // @GetMapping("/lista")
+    // public List<Usuario> listaUsuarios() {
+    //     return usuarioServicio.listarUsuarios();
+    // }
+
     @GetMapping("/lista")
-    public List<Usuario> listaUsuarios() {
-        return usuarioServicio.listarUsuarios();
+    public String lista(ModelMap modelo) {
+        List<Usuario> usuarios = usuarioServicio.listarUsuarios();
+        modelo.addAttribute("usuarios", usuarios);
+        return "usuario_list";
     }
 
     @GetMapping("/registrar")
@@ -77,11 +85,10 @@ public class UsuarioControlador {
 
     @PostMapping("/agregar")
     public String agregarUsuario(@RequestParam String nombre,
-                                @RequestParam String apellido,
-                                @RequestParam String email,
-                                @RequestParam String password,
-                                @RequestParam MultipartFile archivo, ModelMap model) 
-    {
+            @RequestParam String apellido,
+            @RequestParam String email,
+            @RequestParam String password,
+            @RequestParam MultipartFile archivo, ModelMap model) {
         System.out.println(nombre);
         System.out.println(apellido);
         System.out.println(email);
@@ -93,15 +100,11 @@ public class UsuarioControlador {
             usuarioServicio.agregar(nombre, apellido, email, password, imagen);
 
             model.put("Exito", "Usuario creado correctamente");
-            return "index";
+            return "redirect:/";
         } catch (Exceptiones e) {
             model.put("error", e.getMessage());
             return "index";
         }
-        
+
     }
 }
-    
-   
-
-
