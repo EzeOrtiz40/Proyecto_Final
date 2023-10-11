@@ -25,7 +25,6 @@ import com.fashion.web.servicios.ImagenServicio;
 import com.fashion.web.servicios.UsuarioServicio;
 
 @Controller
-@RestController
 @CrossOrigin(origins="*")
 @RequestMapping("/usuario")
 public class UsuarioControlador {
