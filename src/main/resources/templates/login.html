@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/login.css">
+    <title>Inicia Sesion</title>
+</head>
+<body>
+    
+    <form action="/usuario/login" class="form">
+
+        <h2 class="form__title"> Inicia Sesion</h2>
+        <p class="form__paragraph"> ¿Aun no tienes una cuenta? <a href="/usuario/registrar" class="form__link"> Entra aqui</a></p>
+
+        <div class="form__container">
+
+            <div class="form__group">
+                <input type="text" id="name" class="form__input" placeholder=" ">
+                <label for="name" class="form__label">Nombre:</label>
+                <span class="form__line"></span>
+            </div>             
+      
+            <div class="form__group">
+                <input type="text" id="user" class="form__input" placeholder=" ">
+                <label for="user" class="form__label">Usuario:</label>
+                <span class="form__line"></span>
+            </div>             
+
+            <div class="form__group">
+                <input type="text" id="password" class="form__input" placeholder=" ">
+                <label for="password" class="form__label">Contraseña:</label>
+                <span class="form__line"></span>
+            </div> 
+            
+            <input type="submit" class="form__submit" value="Entrar">
+
+        </div>
+
+    </form>
+
+</body>
+</html>
