@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/usuario_list.css">
+        <title>Document</title>
+    </head>    
+    
+    <body>
+            
+        <section class="section">
+
+            <div class="section__container">
+
+                <h2 class="section__title">Lista de Usuarios</h2>
+                <!--tabla-->    
+                <div class="div__container">
+            
+                    <table class="div__table">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Apellido</th>
+                                <th scope="col">Email</th>
+                                <!-- <th scope="col">Password</th> -->
+                                <th scope="col">F-Creacion</th>
+                                <!-- <th scope="col">imagen</th> -->
+                                <th scope="col">Modificar</th>
+                            </tr>      
+                        </thead>
+                        
+                        <tbody th:each="usuario : ${usuarios}">
+                            <tr>
+                                <th scope="row" th:text="${usuario.id}"></th>
+                                <td th:text="${usuario.nombre}"></td>
+                                <td th:text="${usuario.apellido}"></td>
+                                <td th:text="${usuario.email}"></td>
+                                <td th:text="${usuario.fecha_creacion}"></td>
+                                <td>
+                                    <a th:href="@{/usuario/modificar/__${usuario.id}__}" <i class="link"></i>Modificar</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                        
+                    </table>
+                    
+                </div>
+
+                <div class="form__back">
+
+                    <a th:href="@{/}" class="form__btn">Volver</a>
+            
+                </div>
+
+            </div>
+
+        </section>        
+        
+    </body>
+</html>
