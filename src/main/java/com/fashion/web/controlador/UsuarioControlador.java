@@ -80,6 +80,11 @@ public class UsuarioControlador {
         return "usuario_form";
     }
 
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }    
+
     @PostMapping("/agregar")
     public String agregarUsuario(@RequestParam String nombre,
             @RequestParam String apellido,
