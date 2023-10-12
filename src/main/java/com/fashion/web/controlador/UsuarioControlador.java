@@ -95,7 +95,7 @@ public class UsuarioControlador {
             usuarioServicio.agregar(nombre, apellido, email, password, imagen);
 
             model.put("Exito", "Usuario creado correctamente!");
-            return "redirect: ../usuario/login";
+            return "redirect:../usuario/login";
         } catch (Exceptiones e) {
             model.put("Error", "No se pudo crear el usuario, revise sus datos neuvamente!");
             return "usuario_form";
