@@ -12,13 +12,14 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests(requests -> requests
-                        .antMatchers("/css/**", "/js/**", "/img/**", "/**").permitAll()
-                        .anyRequest().authenticated())
-                .formLogin(login -> login
-                        .loginPage("/login")
-                        .permitAll())
-                .logout(logout -> logout
-                        .permitAll());
+    .authorizeRequests(requests -> requests
+        .antMatchers("/", "/css/**", "/js/**", "/img/**", "/registrar").permitAll()
+        .anyRequest().permitAll())
+    .formLogin(login -> login
+        .loginPage("/login")
+        .permitAll())
+    .logout(logout -> logout
+        .permitAll());
+
     }
 }

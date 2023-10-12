@@ -1,6 +1,6 @@
 package com.fashion.web.enums;
 
-public enum Enums {
+public enum Rol {
     USER,
     ADMIN;
 }

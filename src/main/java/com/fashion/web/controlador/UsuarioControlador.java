@@ -62,11 +62,7 @@ public class UsuarioControlador {
 
         return new ResponseEntity<byte[]>(imagen, headers, HttpStatus.OK);
     }
-
-    // @GetMapping("/lista")
-    // public List<Usuario> listaUsuarios() {
-    //     return usuarioServicio.listarUsuarios();
-    // }
+    
 
     @GetMapping("/lista")
     public String lista(ModelMap modelo) {
@@ -90,22 +86,19 @@ public class UsuarioControlador {
             @RequestParam String apellido,
             @RequestParam String email,
             @RequestParam String password,
+            @RequestParam String password2,
             @RequestParam MultipartFile archivo, ModelMap model) {
-        System.out.println(nombre);
-        System.out.println(apellido);
-        System.out.println(email);
-        System.out.println(password);
-        System.out.println(archivo.getName());
+        
         try {
 
             Imagen imagen = imagenServicio.guardar(archivo);
             usuarioServicio.agregar(nombre, apellido, email, password, imagen);
 
-            model.put("Exito", "Usuario creado correctamente");
-            return "redirect:/";
+            model.put("Exito", "Usuario creado correctamente!");
+            return "redirect: ../usuario/login";
         } catch (Exceptiones e) {
-            model.put("error", e.getMessage());
-            return "index";
+            model.put("Error", "No se pudo crear el usuario, revise sus datos neuvamente!");
+            return "usuario_form";
         }
 
     }
