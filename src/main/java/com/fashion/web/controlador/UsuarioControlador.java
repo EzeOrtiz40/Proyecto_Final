@@ -89,14 +89,14 @@ public class UsuarioControlador {
         System.out.println(archivo.getName());
         try {
 
-            Imagen imagen = imagenServicio.guardar(archivo);
+           Imagen imagen = imagenServicio.guardar(archivo);
             usuarioServicio.agregar(nombre, apellido, email, password, imagen);
 
-            model.put("Exito", "Usuario creado correctamente");
-            return "index";
+            model.put("Exito", "Usuario creado correctamente!");
+            return "redirect:../usuario/login";
         } catch (Exceptiones e) {
-            model.put("error", e.getMessage());
-            return "index";
+            model.put("Error", "No se pudo crear el usuario, revise sus datos neuvamente!");
+            return "usuario_form";
         }
         
     }
