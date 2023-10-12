@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import com.fashion.web.entidades.Imagen;
 import com.fashion.web.entidades.Usuario;
@@ -24,8 +22,7 @@ import com.fashion.web.servicios.ImagenServicio;
 import com.fashion.web.servicios.UsuarioServicio;
 
 @Controller
-// @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins="*")
 @RequestMapping("/usuario")
 public class UsuarioControlador {
 
@@ -65,11 +62,7 @@ public class UsuarioControlador {
 
         return new ResponseEntity<byte[]>(imagen, headers, HttpStatus.OK);
     }
-
-    // @GetMapping("/lista")
-    // public List<Usuario> listaUsuarios() {
-    //     return usuarioServicio.listarUsuarios();
-    // }
+    
 
     @GetMapping("/lista")
     public String lista(ModelMap modelo) {
@@ -93,22 +86,19 @@ public class UsuarioControlador {
             @RequestParam String apellido,
             @RequestParam String email,
             @RequestParam String password,
+            @RequestParam String password2,
             @RequestParam MultipartFile archivo, ModelMap model) {
-        System.out.println(nombre);
-        System.out.println(apellido);
-        System.out.println(email);
-        System.out.println(password);
-        System.out.println(archivo.getName());
+        
         try {
 
             Imagen imagen = imagenServicio.guardar(archivo);
             usuarioServicio.agregar(nombre, apellido, email, password, imagen);
 
-            model.put("Exito", "Usuario creado correctamente");
-            return "redirect:/";
+            model.put("Exito", "Usuario creado correctamente!");
+            return "redirect: ../usuario/login";
         } catch (Exceptiones e) {
-            model.put("error", e.getMessage());
-            return "index";
+            model.put("Error", "No se pudo crear el usuario, revise sus datos neuvamente!");
+            return "usuario_form";
         }
 
     }
