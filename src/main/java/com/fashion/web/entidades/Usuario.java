@@ -1,12 +1,14 @@
 package com.fashion.web.entidades;
 
 import java.util.Date;
-
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import org.hibernate.annotations.GenericGenerator;
+import com.fashion.web.Enumeraciones.Rol;
 import lombok.Data;
 
 
@@ -23,7 +25,10 @@ public class Usuario {
     private String email;
     private String password;
     private Date fecha_creacion;
+    
     @OneToOne
     private Imagen imagen;
+    @Enumerated(EnumType.STRING)
+    private Rol rol;
 }
 

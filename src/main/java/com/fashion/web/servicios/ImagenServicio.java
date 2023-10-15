@@ -64,4 +64,8 @@ public class ImagenServicio {
 
         
     }
+
+    public Imagen getOne(Long id) {
+        return imagenRepositorio.getImagen(id);
+    }
 }
