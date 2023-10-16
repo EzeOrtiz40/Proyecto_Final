@@ -91,27 +91,35 @@ public class UsuarioControlador {
             @RequestParam String password2,
             @RequestParam(required = false) MultipartFile archivo, ModelMap model) {
         
+            Imagen imagen = null;
         try {
-            Imagen imagen;
-            Long guest_image = 4l;
+            
+            Imagen guest_imagen = usuarioServicio.buscarPorEmail("guest@test.com").getImagen();
 
-            if(archivo != null) {
-                imagen = imagenServicio.guardar(archivo);
+            if(archivo.getContentType().equals("application/octet-stream")) {
+                imagen = imagenServicio.guardarImagen(new Imagen(guest_imagen.getMime()
+                                                                , guest_imagen.getNombre()
+                                                                , guest_imagen.getContenido()));
+                System.out.println(imagen.getMime()+ "  Estoy en el if ");
             }else{
-                imagen = imagenServicio.getOne(guest_image);
+
+                imagen = imagenServicio.guardar(archivo);
+                System.out.println("Estoy en el else");
             }
             
             usuarioServicio.agregar(nombre, apellido, email, password,password2, imagen);
- 
             model.put("exito", "Usuario creado correctamente");
+
             return "redirect:/usuario/login";
+
         } catch (Exceptiones e) {
             model.put("error", e.getMessage());
             model.put("nombre", nombre);
             model.put("apellido", apellido);
             model.put("email", email);
             
-            return "redirect:/registrar";
+            //return "redirect:/usuario/registrar";
+            return "usuario_form";
         }
 
     }
