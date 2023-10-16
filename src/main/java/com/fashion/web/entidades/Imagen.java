@@ -25,5 +25,12 @@ public class Imagen {
     
     @Lob @Basic(fetch = FetchType.LAZY)
     private byte[] contenido;
+
+    public Imagen(){}
+    public Imagen(String mime, String nombre, byte[] contenido){
+        this.mime = mime;
+        this.nombre = nombre;
+        this.contenido = contenido;
+    }
 }
 

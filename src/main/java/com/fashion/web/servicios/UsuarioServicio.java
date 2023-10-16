@@ -59,7 +59,7 @@ public class UsuarioServicio implements UserDetailsService{
             throw new Exceptiones("El email no puede estar vacio o ser null");
         }
 
-        if(password == null || password.trim().isEmpty() || password.length() <= 6){
+        if(password == null || password.trim().isEmpty() || password.length() <= 5){
             throw new Exceptiones("El password no puede estar vacio o ser null");
         }
 

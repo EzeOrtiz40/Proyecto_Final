@@ -12,21 +12,27 @@
   </head>
   <body>
     <!-- Mostrar mensaje de éxito -->
-    <div th:if="${exito != null}" class="alert alert-success">
-      <p th:text="${exito}">Ya estas registrado</p>
+    <div class="card text-bg-success mb-3" style="max-width: 18rem">
+      <div th:if="${exito != null}" class="card-header"></div>
+      <div class="card-body">
+        <h5 class="card-title"></h5>
+        <p th:text="${exito}" class="card-text"></p>
+      </div>
+    </div>
+    <div class="card text-bg-danger mb-3" style="max-width: 18rem">
+      <div th:if="${error != null}" class="card-header"></div>
+      <div class="card-body">
+        <h5 class="card-title"></h5>
+        <p th:text="${error}" class="card-text"></p>
+      </div>
     </div>
 
-    <!-- Mostrar mensaje de error -->
-    <div th:if="${error != null}" class="alert alert-danger">
-      <p th:text="${error}">Revisa tus datos..</p>
-    </div>
     <form
       th:action="@{registro}"
       method="post"
       enctype="multipart/form-data"
       class="form">
       <h2 class="form__title">Crea tu cuenta</h2>
-      <!-- <p class="form__paragraph"> ¿Aun no tienes una cuenta? <a href="#" class="form__link"> Entra aqui</a></p> -->
 
       <div class="form__container">
         <div class="form__group">
@@ -36,10 +42,12 @@
             id="nombre"
             th:value="${nombre}"
             class="form__input"
-            placeholder=" "
-            required />
+            placeholder=" " />
           <label for="nombre" class="form__label">Nombre:</label>
-          <span class="form__line"></span>
+          <span
+            th:if="${error !=null}"
+            th:text="${error}"
+            class="form__line"></span>
         </div>
 
         <div class="form__group">
@@ -49,10 +57,12 @@
             id="apellido"
             th:value="${apellido}"
             class="form__input"
-            placeholder=" "
-            required />
+            placeholder=" " />
           <label for="apellido" class="form__label">Apellido:</label>
-          <span class="form__line"></span>
+          <span
+            th:if="${error !=null}"
+            th:text="${error}"
+            class="form__line"></span>
         </div>
 
         <div class="form__group">
@@ -62,10 +72,12 @@
             id="email"
             th:value="${email}"
             class="form__input"
-            placeholder=" "
-            required />
+            placeholder=" " />
           <label for="email" class="form__label">Correo Electronico:</label>
-          <span class="form__line"></span>
+          <span
+            th:if="${error !=null}"
+            th:text="${error}"
+            class="form__line"></span>
         </div>
 
         <div class="form__group">
@@ -74,10 +86,12 @@
             name="password"
             id="password"
             class="form__input"
-            placeholder=" "
-            required />
+            placeholder=" " />
           <label for="password" class="form__label">Contraseña:</label>
-          <span class="form__line"></span>
+          <span
+            th:if="${error !=null}"
+            th:text="${error}"
+            class="form__line"></span>
         </div>
         <div class="form__group">
           <input
@@ -85,10 +99,12 @@
             name="password2"
             id="password2"
             class="form__input"
-            placeholder=" "
-            required />
+            placeholder=" " />
           <label for="password2" class="form__label">Repita contraseña</label>
-          <span class="form__line"></span>
+          <span
+            th:if="${error !=null}"
+            th:text="${error}"
+            class="form__line"></span>
         </div>
         <div class="form_submit">
           <!-- <input type="file" name="archivo" accept="image/jpeg, image/png" 
@@ -103,7 +119,6 @@
               accept="image/jpeg, image/png"
               id="file" />
           </div>
-
           <input type="submit" class="form__submit" value="Registrar" />
         </div>
       </div>

@@ -1,3 +1,46 @@
-.text {
-    color: red;
+body {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #0567a886;
+  color: #fff;
+  padding: 10px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#menu {
+  list-style: none;
+  display: flex;
+}
+
+#menu li {
+  margin: 0 10px;
+}
+
+#menu li a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.logo img {
+  filter: grayscale(100%);
+  background-color: black;
+  max-width: 40px; /* Establece el ancho máximo */
+  display: block; /* Para centrar horizontalmente */
+  margin: 0 auto; /* Para centrar horizontalmente */
+}
+/* Media queries para estilos responsivos */
+@media (max-width: 768px) {
+  #menu {
+    display: none; /* Ocultar menú en pantallas pequeñas */
+  }
+  /* Agregar un botón de hamburguesa u otro control para mostrar/ocultar el menú en pantallas pequeñas */
 }

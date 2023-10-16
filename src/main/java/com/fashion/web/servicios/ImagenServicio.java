@@ -36,6 +36,10 @@ public class ImagenServicio {
         return new Imagen();
     }
 
+    public Imagen guardarImagen(Imagen imagen) {
+        return imagenRepositorio.save(imagen);
+    }
+
     public Imagen actualizar(MultipartFile archivo, String id) throws Exceptiones{
 
         if(archivo != null){
