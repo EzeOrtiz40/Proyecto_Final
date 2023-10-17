@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,25 +12,41 @@
     <title>Inicia Sesion</title>
   </head>
   <body>
-    <form action="/usuario/login" class="form">
+    <form th:action="@{/logincheck}" class="form" method="post">
       <h2 class="form__title">Inicia Sesion</h2>
       <p class="form__paragraph">
         ¿Aun no tienes una cuenta?
         <a href="/usuario/registrar" class="form__link"> Entra aqui</a>
       </p>
 
+      <div class="container">
+        <div class="row">
+          <div
+            th:if="${error != null}"
+            class="col d-flex align-items-center alert alert-danger">
+            <p th:text="${error}" class="text-center"></p>
+          </div>
+        </div>
+      </div>
+
       <div class="form__container">
         <div class="form__group">
-          <input type="text" id="user" class="form__input" placeholder=" " />
+          <input
+            type="text"
+            id="user"
+            name="email"
+            class="form__input"
+            placeholder=" " />
           <label for="user" class="form__label">Usuario:</label>
           <span class="form__line"></span>
         </div>
 
         <div class="form__group">
           <input
-            type="text"
+            type="password"
             id="password"
             class="form__input"
+            name="password"
             placeholder=" " />
           <label for="password" class="form__label">Contraseña:</label>
           <span class="form__line"></span>

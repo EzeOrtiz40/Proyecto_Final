@@ -1,0 +1,58 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  text-align: right;
+  padding: 10px;
+}
+
+.cabecera a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.perfil {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  margin: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.banner img {
+  width: 100%;
+  max-height: 200px;
+}
+
+.foto-perfil img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-top: -75px;
+  border: 5px solid #fff;
+}
+
+.publicaciones {
+  margin: 10px;
+}
+
+.publicacion {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.publicacion img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Agrega más estilos según tus preferencias */
