@@ -1,45 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
-    <link rel="stylesheet" type="text/css" href="perfil.html" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perfil de Usuario</title>
   </head>
   <body>
-    <!-- Cabecera -->
-    <header>
-      <div class="cabecera">
-        <a href="inicio.html">Home</a>
-        <a href="perfil.html">Perfil</a>
-        <a href="logout.html">Cerrar sesión</a>
-      </div>
-    </header>
-
-    <!-- Banner y foto de perfil -->
-    <div class="perfil">
-      <div class="banner">
-        <!-- Banner de usuario -->
-        <img src="imagen_banner.jpg" alt="Banner del perfil" />
-      </div>
-      <div class="foto-perfil">
-        <!-- Foto de perfil -->
-        <img src="imagen_perfil.jpg" alt="Foto de perfil" />
-      </div>
+    <h1>Perfil de Usuario</h1>
+    <div>
+      <img
+        src="/usuario/{id}/imagen"
+        alt="Foto de perfil"
+        width="150"
+        height="150" />
     </div>
-
-    <!-- Últimas publicaciones -->
-    <div class="publicaciones">
-      <!-- Publicación 1 -->
-      <div class="publicacion">
-        <img src="imagen_publicacion1.jpg" alt="Publicación 1" />
-        <p>Texto de la publicación 1.</p>
-      </div>
-
-      <!-- Publicación 2 -->
-      <div class="publicacion">
-        <img src="imagen_publicacion2.jpg" alt="Publicación 2" />
-        <p>Texto de la publicación 2.</p>
-      </div>
-
-      <!-- Agregar más publicaciones aquí -->
+    <div>
+      <h2>Información del Usuario</h2>
+      <p><strong>Nombre:</strong> <span th:text="${nombre}"></span></p>
+      <p><strong>Apellido:</strong> <span th:text="${apellido}"></span></p>
+      <p><strong>Email:</strong> <span th:text="${email}"></span></p>
     </div>
+    <a href="/usuario/lista">Volver a la lista de usuarios</a>
   </body>
 </html>
