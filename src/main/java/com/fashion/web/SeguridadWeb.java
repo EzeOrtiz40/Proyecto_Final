@@ -33,6 +33,7 @@ public  class SeguridadWeb{
    @Bean
    public DefaultSecurityFilterChain filterChain(HttpSecurity http) throws Exception{
        http.authorizeRequests(requests -> requests
+               .antMatchers("/admin/*").hasRole("ADMIN")
                .antMatchers("/css/*", "/js/*", "/img/*", "/**")
                .permitAll())
                .formLogin(login -> login
