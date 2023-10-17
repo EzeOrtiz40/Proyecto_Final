@@ -71,13 +71,6 @@ public class UsuarioControlador {
         return "usuario_list";
     }
 
-    
-
-    @GetMapping("/login")
-    public String login() {
-        return "login";
-    }    
-
     @GetMapping("/registrar")
     public String registrar() {
         return "usuario_form";
