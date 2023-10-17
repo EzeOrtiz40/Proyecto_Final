@@ -1,95 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="index.css" />
     <title>Publicacion</title>
-</head>
-<body>
-
+  </head>
+  <body>
     <!-- heaher  -->
     <nav class="container-nav">
-        <a href="#" class="logo">Nombre</a>
+      <a href="#" class="logo">Nombre</a>
 
-        <input type="text" class="nav-input" placeholder="Ingrese un nombre...">
+      <input type="text" class="nav-input" placeholder="Ingrese un nombre..." />
 
-        <ul class="nav-list">
-            <li><a href="/" class="nav-item" >Inicio</a></li>
-            <li><a href="/login" class="nav-item" >Iniciar sesion</a></li>
-            <li><a href="/logout" class="nav-item" >Cerrar sesion</a></li>
-            <li><a href="/registrar" class="nav-item" >Registrate</a></li>
-            <li><a href="/perfil" class="nav-item" >Perfil</a></li>
-            <li><a href="/admin" class="nav-item" >Admin</a></li>
-
-        </ul>
+      <ul class="nav-list">
+        <li><a href="/" class="nav-item">Inicio</a></li>
+        <li><a href="/login" class="nav-item">Iniciar sesion</a></li>
+        <li><a href="/logout" class="nav-item">Cerrar sesion</a></li>
+        <li><a href="/registrar" class="nav-item">Registrate</a></li>
+        <li><a href="/perfil" class="nav-item">Perfil</a></li>
+        <li><a href="/admin" class="nav-item">Admin</a></li>
+      </ul>
     </nav>
 
     <section class="container">
+      <div class="container-publication">
+        <!-- ingresar publicacion -->
+        <div class="div-publication">
+          <div class="avatar">
+            <img src="" alt="perfil" />
+          </div>
 
-        <div class="container-publication">
+          <form
+            action=""
+            method=""
+            enctype="multipart/form-data"
+            class="form-publication">
+            <textarea name="" class="area-comment"></textarea>
 
-            <!-- ingresar publicacion -->
-            <div class="div-publication">
-                <div class="avatar">
-                    <img src="" alt="perfil">
-                </div>
-
-                <form action="" method="" enctype="multipart/form-data" class="form-publication">
-                    <textarea name="" class="area-comment"></textarea>
-
-                    <div class="button-upload">
-                        <div class="contenedor__btn__file">
-                            <i class="far fa-image"></i>
-                            Adjuntar archivo
-                            <label for="file" class="btn__file"></label>
-                            <input type="file" name="archivo" accept="image/jpeg, image/png" id="file">
-                        </div> 
-                    </div>
-
-                    <button class="button-send" type="submit">
-                            <i class="fas fa-paper-plane"></i>
-                            Publicar
-                    </button>
-                </form>
-
+            <div class="button-upload">
+              <div class="contenedor__btn__file">
+                <i class="far fa-image"></i>
+                Adjuntar archivo
+                <label for="file" class="btn__file"></label>
+                <input
+                  type="file"
+                  name="archivo"
+                  accept="image/jpeg, image/png"
+                  id="file" />
+              </div>
             </div>
-            
-            <!-- mostrar publicacion  -->
-            <div class="publication-realized">
-                <div class="user-public">
-                    <div class="avatar">
-                        <img src="#" alt="img">
-                    </div>
-                    <div class="comment-publication">
-                        <h4>Carolina de la valle</h4>
-                        
-                        <h5>Hace 3 min</h5>
-                        
-                    </div>
-                <!--   falta aumentar reporte aqui -->
-                </div>
 
-                <p class="title-publicated">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Asperiores aliquam possimus, doloremque repellat assumenda ipsam magni ducimus, dolorem explicabo</p>
-                <div class="file-publicated">
-                    <img src="./img/estilos-de-vestir.jpg" alt="img">
-                </div>
-                <div class="button-comment">
-                    <button type="" class="button-like">
-                        <i class="fas fa-thumbs-up"></i>
-                        45
-                    </button>
-                    <button type="" class="button-comment">
-                        Comentar
-                    </button>
-                </div>
-
-            </div>       
-
+            <button class="button-send" type="submit">
+              <i class="fas fa-paper-plane"></i>
+              Publicar
+            </button>
+          </form>
         </div>
 
+        <!-- mostrar publicacion  -->
+        <div class="publication-realized">
+          <div class="user-public">
+            <div class="avatar">
+              <img src="#" alt="img" />
+            </div>
+            <div class="comment-publication">
+              <h4>Carolina de la valle</h4>
+
+              <h5>Hace 3 min</h5>
+            </div>
+            <!--   falta aumentar reporte aqui -->
+          </div>
+
+          <p class="title-publicated">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Asperiores
+            aliquam possimus, doloremque repellat assumenda ipsam magni ducimus,
+            dolorem explicabo
+          </p>
+          <div class="file-publicated">
+            <img src="./img/estilos-de-vestir.jpg" alt="img" />
+          </div>
+          <div class="button-comment">
+            <button type="" class="button-like">
+              <i class="fas fa-thumbs-up"></i>
+              45
+            </button>
+            <button type="" class="button-comment">Comentar</button>
+          </div>
+        </div>
+      </div>
     </section>
-    
-    <script src="https://kit.fontawesome.com/bd21d83e0d.js" crossorigin="anonymous"></script>
-</body>
+
+    <script
+      src="https://kit.fontawesome.com/bd21d83e0d.js"
+      crossorigin="anonymous"></script>
+  </body>
 </html>

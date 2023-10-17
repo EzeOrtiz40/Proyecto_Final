@@ -71,10 +71,10 @@ public class UsuarioControlador {
         return "usuario_list";
     }
 
-    @GetMapping("/registrar")
-    public String registrar() {
-        return "usuario_form";
-    }
+    // @GetMapping("/registrar")
+    // public String registrar() {
+    //     return "usuario_form";
+    // }
 
     @PostMapping("/registro")
     public String agregarUsuario(@RequestParam String nombre,

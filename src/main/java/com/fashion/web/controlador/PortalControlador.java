@@ -46,4 +46,8 @@ public class PortalControlador {
         return "login";
     }
     
+    @GetMapping("/registrar")
+    public String registrar() {
+        return "usuario_form";
+    }
 }
