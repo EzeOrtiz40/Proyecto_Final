@@ -38,6 +38,15 @@
             class="form-publication">
             <textarea name="" class="area-comment"></textarea>
 
+            <label for="categoria">Categoria</label>
+            
+              <select class="selector" id="categoria" name="categoria" type="text" required>
+                  <option value="camisas">Camisas</option>
+                  <option value="pantalones">Pantalones</option>
+                  <option value="vestidos">Vestidos</option>
+                  <option value="chaquetas">Chaquetas</option>                 
+              </select>
+
             <div class="button-upload">
               <div class="contenedor__btn__file">
                 <i class="far fa-image"></i>
@@ -55,6 +64,7 @@
               <i class="fas fa-paper-plane"></i>
               Publicar
             </button>
+
           </form>
         </div>
 
@@ -80,19 +90,42 @@
           <div class="file-publicated">
             <img src="./img/estilos-de-vestir.jpg" alt="img" />
           </div>
-          <div class="button-comment">
-            <button type="" class="button-like">
-              <i class="fas fa-thumbs-up"></i>
-              45
+
+          <div class="div-like-comment">
+            <button type="" class=" public-btn button-like">
+              <!-- <i class="fa-solid fa-thumbs-up"></i> -->
+              <i class="fa-regular fa-thumbs-up"></i>
+              like
+              <!-- 45 -->
             </button>
-            <button type="" class="button-comment">Comentar</button>
+            <!-- <button type="" class="public-btn button-comment">Comentar</button> -->
+            <a href="#" class="public-btn button-comment">Comentar</a>
+
+            <!-- probando -->
+            
+            <!-- Elemento para mostrar el formulario de comentario -->
+            <div id="comentario-form" style="display: none;">
+              <textarea id="comentario-text" placeholder="Escribe tu comentario aquí"></textarea>
+              <button id="enviar-comentario">Enviar Comentario</button>
+            </div>
+
+            <!-- Botón o enlace para abrir el formulario de comentario -->
+            <button id="abrir-formulario">Comentar</button>
+
+            <!-- Contenedor para mostrar los comentarios existentes -->
+            <div id="comentarios-container"></div>
+
+            <!-- *********************** -->
+
           </div>
+
         </div>
       </div>
     </section>
 
-    <script
-      src="https://kit.fontawesome.com/bd21d83e0d.js"
-      crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/bd21d83e0d.js" crossorigin="anonymous"></script>
+
+    <script th:src="@{/js/index.js}"></script>
+
   </body>
 </html>

@@ -29,7 +29,7 @@ body{
     justify-content: space-between;
     padding:  10px 3%;
 
-    background-color: #3866f2;
+    background-color: #9263d9;
 }
 
 .logo {
@@ -133,7 +133,39 @@ body{
     font-size: 1rem;
 }
 
+input:focus,
+.area-comment:focus {
+    outline: none;
+    border: 1px solid #9263d9;
+    box-shadow: 0px 0px 5px 0px #9263d9;
+}
+
 /*-----------Botones---------*/
+
+/*categoria*/
+label {
+    font-weight: bold;
+}
+
+/* input[type="text"], */
+.selector {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Estilo para los bordes del campo cuando está enfocado */
+input:focus,
+.selector:focus {
+    outline: none;
+    border: 1px solid #9263d9;
+    box-shadow: 0px 0px 5px 0px #9263d9;
+}
+
+/*boton para adjuntar archivo*/
 .button-upload {
     position: relative;
     display: inline-block;
@@ -147,7 +179,7 @@ body{
 }
 
 .contenedor__btn__file {
-    background: #3866f2;
+    background: #9263d9;
     color: #fff;
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
@@ -183,7 +215,7 @@ body{
 }
 
 .button-send {
-    background: #3866f2;
+    background: #9263d9;
     color: #fff;
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
@@ -241,4 +273,25 @@ body{
     /* position: absolute; */
     width: 100%;
     border-radius: 8px;
+}
+
+.div-like-comment {
+    display: flex;
+}
+
+.public-btn {
+    background: #9263d9;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    padding: .5em 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;  
+}
+
+.button-comment {
+    margin-left: .5rem;
+    text-decoration: none;
 }
