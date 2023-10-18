@@ -53,10 +53,10 @@ public class PortalControlador {
         return "login";
     }
     
-    @GetMapping("/registrar")
-    public String registrar() {
-        return "usuario_form";
-    }
+     @GetMapping("/registrar")
+     public String registrar() {
+         return "usuario_form";
+     }
 
     @GetMapping("/{id}/perfil")
     public String perfilUsuario(@PathVariable String email, ModelMap modelo) {

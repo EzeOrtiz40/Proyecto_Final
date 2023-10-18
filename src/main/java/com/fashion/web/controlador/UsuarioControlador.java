@@ -71,10 +71,10 @@ public class UsuarioControlador {
         return "usuario_list";
     }
 
-    // @GetMapping("/registrar")
-    // public String registrar() {
-    //     return "usuario_form";
-    // }
+    //  @GetMapping("/registrar")
+    //  public String registrar() {
+    //      return "usuario_form";
+    //  }
 
     @PostMapping("/registro")
     public String agregarUsuario(@RequestParam String nombre,
@@ -84,7 +84,7 @@ public class UsuarioControlador {
             @RequestParam String password2,
             @RequestParam(required = false) MultipartFile archivo, ModelMap model) {
         
-            Imagen imagen = null;
+            Imagen imagen;
         try {
             
             Imagen guest_imagen = usuarioServicio.buscarPorEmail("guest@test.com").getImagen();
@@ -94,16 +94,18 @@ public class UsuarioControlador {
                                                                 , guest_imagen.getNombre()
                                                                 , guest_imagen.getContenido()));
                 System.out.println(imagen.getMime()+ "  Estoy en el if ");
-            }else{
+            }
+            
+            else{
 
-                imagen = imagenServicio.guardar(archivo);
+              imagen = imagenServicio.guardar(archivo);
                 System.out.println("Estoy en el else");
             }
             
             usuarioServicio.agregar(nombre, apellido, email, password,password2, imagen);
             model.put("exito", "Usuario creado correctamente");
 
-            return "redirect:/usuario/login";
+            return "login";
 
         } catch (Exceptiones e) {
             model.put("error", e.getMessage());
