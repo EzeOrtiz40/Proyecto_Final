@@ -83,8 +83,8 @@ public class UsuarioControlador {
         try {
             
             Imagen guest_imagen = usuarioServicio.buscarPorEmail("guest@test.com").getImagen();
-
-            if(archivo.getContentType().equals("application/octet-stream")) {
+            
+            if(archivo.getContentType().equals("application/octet-stream")){
                 imagen = imagenServicio.guardarImagen(new Imagen(guest_imagen.getMime()
                                                                 , guest_imagen.getNombre()
                                                                 , guest_imagen.getContenido()));
@@ -108,7 +108,6 @@ public class UsuarioControlador {
             model.put("apellido", apellido);
             model.put("email", email);
             
-            //return "redirect:/usuario/registrar";
             return "usuario_form";
         }
 
