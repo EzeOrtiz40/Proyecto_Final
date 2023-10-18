@@ -4,12 +4,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -58,24 +55,20 @@ public class PortalControlador {
          return "usuario_form";
      }
 
-    @GetMapping("/{id}/perfil")
-    public String perfilUsuario(@PathVariable String email, ModelMap modelo) {
+    // @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    // @GetMapping("/perfil")
+    // public String perfilUsuario(HttpSession session, ModelMap modelo) {
+    //     Usuario usuarioLogueado = (Usuario) session.getAttribute("usuariosession");
+
+    //     try {
+    //         if(usuarioLogueado.getEmail().toString().equals(usuarioLogueado)){
+
+    //         }
+    //     } catch (Exception e) {
+    //         // TODO: handle exception
+    //     }
         
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
-
-        Usuario usuario = usuarioServicio.buscarPorEmail(email);
-
-        if (!usuario.getEmail().equals(username)) {
-            
-            return "redirect: index";
-        }
-
-        modelo.addAttribute("nombre", usuario.getNombre());
-        modelo.addAttribute("apellido", usuario.getApellido());
-        modelo.addAttribute("email", usuario.getEmail());
-        
-        return "perfil_usuario"; // El nombre de la vista de perfil de usuario
-    }
+    //     return "perfil_usuario"; 
+    // }
 
 }
