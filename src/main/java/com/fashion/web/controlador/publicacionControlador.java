@@ -56,7 +56,7 @@ public class publicacionControlador {
 
     @GetMapping("/verPublicacion/{id}")
     public String verPublicacion(@PathVariable String id, ModelMap modelo) {
-        Publicacion publicacion = ps.getOne(id);
+        Publicacion publicacion = ps.buscarPorId(id);
         modelo.addAttribute("publicacion", publicacion);
         return "verPublicacion.html";
     }

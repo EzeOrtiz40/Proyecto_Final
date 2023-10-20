@@ -70,9 +70,36 @@ body{
 
 /* --------------------ingresar publicacion--------------- */
 
-.container {
+.principal {
+    display: flex;
+    /* gap: 10%; */
+}
+
+/* ****************CATEGORIA*************** */
+
+.category {
+    margin-top: 75px;
+    width: 27%;
+    height: 300px;
+    /* position: fixed; */
+    background-color: #404040;
+}
+
+
+/* ****************PERFIL*************** */
+
+.perfil {
+    margin-top: 75px;
+    width:27%;
+    height: 50px;
+    /* position: fixed; */
+    background-color: #404040;
+}
+
+ /* ****************CUERPO*************** */
+ .container {
     color: #404040;
-    width: 650px;
+    width: 46%;
     margin-left: auto;
     margin-right: auto;
     padding: 1rem;
@@ -85,7 +112,7 @@ body{
     width: 100%;
     /* background-color: red; */
     padding-bottom: 1rem;
-    margin-top: 65px    ;
+    margin-top: 60px    ;
 }
 
 .contenedor-publication img {
@@ -294,4 +321,26 @@ input:focus,
 .button-comment {
     margin-left: .5rem;
     text-decoration: none;
+}
+
+/* fotmulario del comentario */
+#miDiv {
+    display: none;
+    margin-top: 20px;
+}
+
+.button-send-comentario {
+    background: #9263d9;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    padding: .5em 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button-send-comentario, .button-comment:hover, .button-like:hover {
+    background-color: #005f6b;
 }

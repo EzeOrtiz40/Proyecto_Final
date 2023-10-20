@@ -3,6 +3,8 @@ package com.fashion.web.entidades;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -28,7 +30,7 @@ public class Publicacion {
     private String titulo;
     private String contenido;
 
-    @OneToOne
+    @Enumerated(EnumType.STRING)
     private RolCategoria RolCategoria;
 
     @OneToOne

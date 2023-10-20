@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+  
+body{
+    font-family: 'Roboto', sans-serif;
+    background-color: #e5e5f7;
+    /*opacity: 0.8;**/
+    background-image:  radial-gradient(#c92fa9 0.5px, transparent 0.5px), radial-gradient(#c92fa9 0.5px, #e5e5f7 0.5px);
+    background-size: 20px 20px;
+    background-position: 0 0,10px 10px;
+    display: flex;
+    min-height: 100vh;
+}
+  
+/*cuerpo*/
+  
+.section{
+    display: flex;
+    width: 100%;
+}
+
+.section__container{    
+    margin: auto;  /*Alinear al medio gracias al flexbox*/
+    width: 90%;
+    max-width: 800px;
+    padding: 4.5em 3em;    /*Espacio en los lados*/
+    text-align: center;
+}
+
+.section__title{
+  font-size: 2rem;
+  margin-bottom: .5rem;
+  padding-top: 0px;
+  padding-bottom: 2rem;
+}
+
+.div__container{
+    border: solid 1px rgba(0, 0, 0, 0.3);
+}
+
+/*Estilos generales para la tabla*/
+.div__table{
+    width: 100%;
+    color: #000;
+    font-size: 14px;
+    border-collapse: collapse;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+/*Estilos para el encabezado de la tabla*/
+th{
+    background-color: #f2f2f2;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+/*Estilos para las celdas de los datos*/
+td{
+    border-bottom: 1px solid #ddd;
+    padding: 8px;  
+}
+
+tbody tr:hover{
+    cursor: pointer;
+    background-color: #f5f5f5;
+}
+
+/* Boton Volver*/
+.form__back{
+    margin-top: 2em;  /*Espacio en la parte de arriba*/
+}
+  
+.form__btn{
+    display: inline;
+    background-color: #3866f2;
+    color: #fff;
+    padding: .7em 2em;
+    text-decoration: none;
+    border: none;
+    border-radius: .5em;
+}

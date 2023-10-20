@@ -67,7 +67,7 @@ public class publicacionServicio {
         return publicaciones;
     }
 
-    public Publicacion getOne(String id) { 
+    public Publicacion buscarPorId(String id) { 
        return pr.buscarPorId(id);
     }
 

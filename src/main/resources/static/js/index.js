@@ -1,29 +1,25 @@
-// Obtén referencia a los elementos del DOM
-const abrirFormularioBtn = document.getElementById('abrir-formulario');
-const comentarioForm = document.getElementById('comentario-form');
-const comentarioText = document.getElementById('comentario-text');
-const enviarComentarioBtn = document.getElementById('enviar-comentario');
-const comentariosContainer = document.getElementById('comentarios-container');
+//Para la dinamica de comentar un publicacion
+function mostrarDiv() {
+    document.getElementById("miDiv").style.display = "block";
+}
 
-// Event listener para el botón "Comentar"
-abrirFormularioBtn.addEventListener('click', function() {
-    // Muestra el formulario
-    comentarioForm.style.display = 'block';
-});
+function ocultarDiv() {
+    document.getElementById("miDiv").style.display = "none";
+}
 
-// Event listener para el botón "Enviar Comentario"
-enviarComentarioBtn.addEventListener('click', function() {
-    // Obtiene el contenido del comentario
-    const comentarioContenido = comentarioText.value;
+// para el boton de like 
+function toggleLike() {
+    var likeButton = document.querySelector('.button-like');
+    var likeIcon = likeButton.querySelector('i');
 
-    // Puedes hacer algo con el contenido del comentario, como mostrarlo en la página
-    const nuevoComentario = document.createElement('div');
-    nuevoComentario.textContent = comentarioContenido;
-    comentariosContainer.appendChild(nuevoComentario);
-
-    // Limpia el cuadro de texto
-    comentarioText.value = '';
-
-    // Oculta el formulario después de enviar el comentario
-    comentarioForm.style.display = 'none';
-});
+    // Verifica si el ícono tiene la clase "fa-regular"
+    if (likeIcon.classList.contains('fa-regular')) {
+        // Si tiene la clase "fa-regular", cambia al ícono de "like" sólido
+        likeIcon.classList.remove('fa-regular');
+        likeIcon.classList.add('fa-solid');
+    } else {
+        // Si no tiene la clase "fa-regular", cambia al ícono de "like" sin rellenar
+        likeIcon.classList.remove('fa-solid');
+        likeIcon.classList.add('fa-regular');
+    }
+}

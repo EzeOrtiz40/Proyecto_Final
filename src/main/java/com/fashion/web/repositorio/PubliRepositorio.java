@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PubliRepositorio extends JpaRepository<Publicacion, String> {
 
-    @Query("SELECT p FROM publicacion p WHERE p.id = :id")
+    @Query("SELECT p FROM Publicacion p WHERE p.id = :id")
     public Publicacion buscarPorId(@Param("id") String id);
 
     
