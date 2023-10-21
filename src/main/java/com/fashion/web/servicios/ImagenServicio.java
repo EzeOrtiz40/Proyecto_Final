@@ -40,7 +40,7 @@ public class ImagenServicio {
         return imagenRepositorio.save(imagen);
     }
 
-    public Imagen actualizar(MultipartFile archivo, String id) throws Exceptiones{
+    public Imagen actualizar(MultipartFile archivo, Long id) throws Exceptiones{
 
         if(archivo != null){
             try {
@@ -65,8 +65,6 @@ public class ImagenServicio {
 
         }
         return null;
-
-        
     }
 
     public Imagen getOne(Long id) {

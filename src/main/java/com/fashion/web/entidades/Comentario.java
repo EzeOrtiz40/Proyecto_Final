@@ -1,17 +1,17 @@
-package com.fashion.web.entidades;
+// package com.fashion.web.entidades;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+// import javax.persistence.Entity;
+// import javax.persistence.GeneratedValue;
+// import javax.persistence.Id;
 
-import org.hibernate.annotations.GenericGenerator;
+// import org.hibernate.annotations.GenericGenerator;
 
-@Entity
-public class Comentario {
+// @Entity
+// public class Comentario {
 
-    @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid" , strategy = "uuid")
-    private String id;
+//     @Id
+//     @GeneratedValue(generator = "uuid")
+//     @GenericGenerator(name = "uuid" , strategy = "uuid")
+//     private String id;
     
-}
+// }

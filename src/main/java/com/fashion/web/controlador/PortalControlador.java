@@ -1,15 +1,15 @@
 package com.fashion.web.controlador;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.fashion.web.entidades.Usuario;
 import com.fashion.web.servicios.UsuarioServicio;
 
@@ -37,8 +37,40 @@ public class PortalControlador {
         return "inicio";
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("/perfil")
-    public String perfil(){
+    public String perfil(HttpServletRequest request,ModelMap model){
+        
+        HttpSession session = request.getSession(false);
+
+        if(session != null){
+            Usuario usuario = (Usuario) session.getAttribute("usuariosession");
+
+            if(usuario != null){
+                
+                model.addAttribute("nombre", usuario.getNombre());
+                model.addAttribute("apellido", usuario.getApellido());
+                model.addAttribute("email", usuario.getEmail());
+                model.addAttribute("id", usuario.getId());
+            }
+        }
+        return "perfil";
+    }
+    
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    @GetMapping("/perfil/{id}")
+    public String perfilById(@PathVariable("id") Long id , ModelMap model){
+        
+        Usuario usuario = usuarioServicio.buscarUsuarioPorId(id);
+
+        if(usuario != null){
+                
+            model.addAttribute("nombre", usuario.getNombre());
+            model.addAttribute("apellido", usuario.getApellido());
+            model.addAttribute("email", usuario.getEmail());
+            model.addAttribute("id", usuario.getId());
+        }
+        
         return "perfil";
     }
 
@@ -54,21 +86,4 @@ public class PortalControlador {
      public String registrar() {
          return "usuario_form";
      }
-
-    // @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-    // @GetMapping("/perfil")
-    // public String perfilUsuario(HttpSession session, ModelMap modelo) {
-    //     Usuario usuarioLogueado = (Usuario) session.getAttribute("usuariosession");
-
-    //     try {
-    //         if(usuarioLogueado.getEmail().toString().equals(usuarioLogueado)){
-
-    //         }
-    //     } catch (Exception e) {
-    //         // TODO: handle exception
-    //     }
-        
-    //     return "perfil_usuario"; 
-    // }
-
 }

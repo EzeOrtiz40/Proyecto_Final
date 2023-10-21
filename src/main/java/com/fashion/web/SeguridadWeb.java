@@ -41,7 +41,7 @@ public  class SeguridadWeb{
                        .loginProcessingUrl("/logincheck")
                        .usernameParameter("email")
                        .passwordParameter("password")
-                       .defaultSuccessUrl("/inicio")
+                       .defaultSuccessUrl("/perfil")
                        .permitAll())
                .logout(logout -> logout
                .logoutUrl("/logout")

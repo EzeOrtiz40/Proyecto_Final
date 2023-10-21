@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -89,6 +90,13 @@ public class UsuarioServicio implements UserDetailsService{
     public List<Usuario> buscarPorNombre(String nombre){
         List<Usuario> listaNombres = usuarioRepositorio.buscarNombre(nombre);
         return listaNombres;
+    }
+
+    public void validarEmail(Usuario usuario, String email, ModelMap model)throws Exceptiones{
+        Usuario nuevoUsuario = usuarioRepositorio.buscarEmail(email);
+        if(nuevoUsuario.getEmail().equals(usuario.getEmail())){
+            model.put("error", "El mail ingresado ya existe");
+        }
     }
 
 

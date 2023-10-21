@@ -27,6 +27,7 @@ public class Imagen {
     private byte[] contenido;
 
     public Imagen(){}
+    
     public Imagen(String mime, String nombre, byte[] contenido){
         this.mime = mime;
         this.nombre = nombre;
