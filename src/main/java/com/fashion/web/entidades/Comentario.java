@@ -1,17 +1,27 @@
-// package com.fashion.web.entidades;
+package com.fashion.web.entidades;
 
-// import javax.persistence.Entity;
-// import javax.persistence.GeneratedValue;
-// import javax.persistence.Id;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import org.hibernate.annotations.GenericGenerator;
+import lombok.Data;
 
-// import org.hibernate.annotations.GenericGenerator;
+@Entity
+@Data
+public class Comentario {
 
-// @Entity
-// public class Comentario {
+    @Id
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid" , strategy = "uuid")
+    private Long id;
 
-//     @Id
-//     @GeneratedValue(generator = "uuid")
-//     @GenericGenerator(name = "uuid" , strategy = "uuid")
-//     private String id;
-    
-// }
+    @ManyToOne
+    private Usuario usuario;
+
+    @ManyToOne
+    @JoinColumn(name = "publicacion_id")
+    private Publicacion publicacion;
+    String texto;
+}
