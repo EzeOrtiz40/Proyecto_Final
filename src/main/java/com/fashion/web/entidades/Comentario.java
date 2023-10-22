@@ -14,14 +14,15 @@ public class Comentario {
 
     @Id
     @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid" , strategy = "uuid")
+    @GenericGenerator(name = "uuid2" , strategy = "uuid2")
     private Long id;
+
+    String texto;
 
     @ManyToOne
     private Usuario usuario;
 
+    //@JoinColumn(name = "publicacion_id")
     @ManyToOne
-    @JoinColumn(name = "publicacion_id")
     private Publicacion publicacion;
-    String texto;
 }

@@ -52,6 +52,7 @@ public class PortalControlador {
                 model.addAttribute("apellido", usuario.getApellido());
                 model.addAttribute("email", usuario.getEmail());
                 model.addAttribute("id", usuario.getId());
+                model.addAttribute("fecha", usuario.getFecha_creacion());
             }
         }
         return "perfil";

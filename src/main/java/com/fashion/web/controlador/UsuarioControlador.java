@@ -79,16 +79,15 @@ public class UsuarioControlador {
             @RequestParam String password2,
             @RequestParam(required = false) MultipartFile archivo, ModelMap model) {
         
-                Imagen imagen = null;
-                // Para traer la imagen guest
-                Imagen guest_imagen = usuarioServicio.buscarPorEmail("guest@test.com").getImagen();
+                Imagen imagen;
+                
                 try {
                     // Si el usuario carga una imagen, se ejecuta el if, si no, se carga la imagen del usuario guest
-                    if (archivo != null && !archivo.isEmpty()) {
-                    imagen = imagenServicio.guardar(archivo);
+                    if (archivo.getContentType().equals("application/octet-stream")) {
+                        Imagen guest_imagen = usuarioServicio.buscarPorEmail("guest@test.com").getImagen(); 
+                        imagen = imagenServicio.guardarImagen(new Imagen(guest_imagen.getMime(), guest_imagen.getNombre(), guest_imagen.getContenido()));
                     } else {
-                       imagen = new Imagen(guest_imagen.getMime(), guest_imagen.getNombre(), guest_imagen.getContenido());
-                       
+                        imagen = imagenServicio.guardar(archivo);
                     }
                     
                     usuarioServicio.agregar(nombre, apellido, email, password,password2, imagen);
