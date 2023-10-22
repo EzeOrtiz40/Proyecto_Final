@@ -43,6 +43,6 @@ public class Publicacion {
     @ManyToOne
     private Usuario usuario;
 
-    private Date fechaCreacion;
+    private Date fecha;
     
 }

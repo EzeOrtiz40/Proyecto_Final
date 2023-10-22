@@ -1,49 +1,50 @@
-// package com.fashion.web.servicios;
+package com.fashion.web.servicios;
+
+import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.fashion.web.entidades.Comentario;
+import com.fashion.web.entidades.Publicacion;
+import com.fashion.web.entidades.Usuario;
+import com.fashion.web.exceptiones.Exceptiones;
+import com.fashion.web.repositorio.ComentarioRepositorio;
 
 
-// import java.util.Optional;
+@Service
+public class ComentarioServicio {
 
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.stereotype.Service;
+    @Autowired
+    private ComentarioRepositorio comentarioRepositorio;
 
-// import com.fashion.web.entidades.Comentario;
-// import com.fashion.web.entidades.Publicacion;
-// import com.fashion.web.entidades.Usuario;
-// import com.fashion.web.exceptiones.Exceptiones;
-// import com.fashion.web.repositorio.ComentarioRepositorio;
-// import com.fashion.web.repositorio.PubliRepositorio;
+    public Comentario guardarComentario(String texto, Usuario usuario,Publicacion publicacion) throws Exceptiones{
 
-// @Service
-// public class ComentarioServicio {
-//     @Autowired
-//     ComentarioRepositorio comentarioRepositorio;
-//     @Autowired
-//     PubliRepositorio publiRepositorio;
+        Comentario comentario = new Comentario();
 
-//     public Comentario guardarComentario(String texto, Usuario usuario,Publicacion publicacion) throws Exceptiones{
+        if (texto.trim().isEmpty()) {
 
-//         Comentario comentario = new Comentario();
+            throw new Exceptiones("El comentario no debe estar vacio");
 
-//         if (texto.trim().isEmpty()) {
+        }else {
 
-//             throw new Exceptiones("El comentario no debe estar vacio");
-
-//         }else {
-            
-//             comentario.setUsuario(usuario);
-//             comentario.setTexto(texto);
-//             comentario.setPublicacion(publicacion);
-//         }
-//         Comentario comentarioNuevo = comentarioRepositorio.save(comentario);
-//         return comentarioNuevo;
-//     }
-
-//     // public Comentario deleteById(Long id){
+            comentario.setTexto(texto);
+            comentario.setUsuario(usuario);
+            comentario.setPublicacion(publicacion);
+        }
         
-//     //     return comentarioRepositorio.buscarbyId(id);
-//     // }
+        Comentario comentarioNuevo = comentarioRepositorio.save(comentario);
 
-//     public Optional<Comentario> buscarbyId(Long id){
-//        return  comentarioRepositorio.findById(id);
-//     }
-// }
+        return comentarioNuevo;
+    }
+
+    public void deleteById(Long id){
+        comentarioRepositorio.deleteById(id);
+    }
+
+    public Comentario buscarbyId(Long id){
+       Optional<Comentario> respuesta = comentarioRepositorio.findById(id);
+
+       return (respuesta.isPresent())? respuesta.get(): null;
+    }
+
+
+}

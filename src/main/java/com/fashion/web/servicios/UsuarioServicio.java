@@ -44,7 +44,7 @@ public class UsuarioServicio implements UserDetailsService{
         usuario.setApellido(apellido);
         usuario.setEmail(email);
         usuario.setPassword(new BCryptPasswordEncoder().encode(password));
-        usuario.setFecha_creacion(new Date());
+        usuario.setFecha_creacion(new Date(System.currentTimeMillis()));
         usuario.setImagen(imagen); 
         usuario.setRol(Rol.USER);
 

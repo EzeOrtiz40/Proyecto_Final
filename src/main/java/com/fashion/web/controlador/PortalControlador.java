@@ -87,4 +87,9 @@ public class PortalControlador {
      public String registrar() {
          return "usuario_form";
      }
+
+     @GetMapping("/publicar")
+     public String publicar() {
+         return "publicar";
+     }
 }

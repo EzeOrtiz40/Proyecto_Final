@@ -20,10 +20,10 @@ import com.fashion.web.servicios.UsuarioServicio;
 @RequestMapping("/imagen")
 public class ImagenControlador {
     @Autowired
-    UsuarioServicio usuarioServicio;
+    private UsuarioServicio usuarioServicio;
 
     @Autowired
-    ImagenServicio imagenServicio;
+    private ImagenServicio imagenServicio;
 
 
     @GetMapping("/perfil/{id}")

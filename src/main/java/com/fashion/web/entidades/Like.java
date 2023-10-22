@@ -19,7 +19,7 @@ public class Like {
     @OneToOne
     private Usuario usuario;
 
-    @OneToMany
+    @OneToOne
     private Publicacion publicacion;
     
 }
