@@ -3,6 +3,7 @@ package com.fashion.web.servicios;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
@@ -16,6 +17,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -42,7 +44,7 @@ public class UsuarioServicio implements UserDetailsService{
         usuario.setApellido(apellido);
         usuario.setEmail(email);
         usuario.setPassword(new BCryptPasswordEncoder().encode(password));
-        usuario.setFecha_creacion(new Date());
+        usuario.setFecha_creacion(new Date(System.currentTimeMillis()));
         usuario.setImagen(imagen); 
         usuario.setRol(Rol.USER);
 
@@ -91,6 +93,14 @@ public class UsuarioServicio implements UserDetailsService{
         return listaNombres;
     }
 
+    public void validarEmail(Usuario usuario, String email, ModelMap model)throws Exceptiones{
+        Usuario nuevoUsuario = usuarioRepositorio.buscarEmail(email);
+        if(nuevoUsuario.getEmail().equals(usuario.getEmail())){
+            model.put("error", "El mail ingresado ya existe");
+        }
+    }
+
+   
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {

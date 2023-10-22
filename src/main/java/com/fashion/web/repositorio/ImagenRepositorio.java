@@ -9,7 +9,7 @@ import com.fashion.web.entidades.Imagen;
 
 
 @Repository
-public interface ImagenRepositorio extends JpaRepository<Imagen, String>{
+public interface ImagenRepositorio extends JpaRepository<Imagen, Long>{
     @Query("SELECT i FROM Imagen i WHERE i.id = :id")
     public Imagen getImagen(@Param("id")Long id);
 }

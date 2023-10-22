@@ -1,0 +1,36 @@
+#profile-image {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+}
+
+.container {
+  padding: 30px 20px 0px;
+}
+
+.profile-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-data {
+  width: 100%;
+}
+
+.name {
+  font-size: larger;
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
+  color: black;
+  margin-right: 20px;
+}
+
+.btn {
+  border-radius: 6px;
+  padding: 4px 16px;
+}
+
+.separator {
+  margin-bottom: 20px;
+}

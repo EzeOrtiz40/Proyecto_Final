@@ -9,6 +9,53 @@ header {
   text-align: right;
   padding: 10px;
 }
+/* header  */
+.container-nav {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 3%;
+
+  background-color: #3866f2;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 33px;
+  font-weight: 700;
+  text-decoration: none;
+  color: #fff;
+}
+
+.nav-input {
+  display: flex;
+  width: 30%;
+  height: 35px;
+  background-color: #f4f4f4;
+  border-radius: 5px;
+  overflow: hidden;
+
+  padding: 8px; /* establece el espacio interno dentro del textarea */
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-size: 0.8rem;
+  border: 10px solid transparent;
+}
+
+.nav-list {
+  display: flex;
+  list-style-type: none;
+}
+
+.nav-item {
+  text-decoration: none;
+  font-weight: 300;
+  margin: 0 10px;
+  color: #fff;
+}
 
 .cabecera a {
   color: #fff;

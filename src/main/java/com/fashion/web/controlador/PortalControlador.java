@@ -1,18 +1,15 @@
 package com.fashion.web.controlador;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.fashion.web.entidades.Usuario;
 import com.fashion.web.servicios.UsuarioServicio;
 
@@ -40,8 +37,41 @@ public class PortalControlador {
         return "inicio";
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("/perfil")
-    public String perfil(){
+    public String perfil(HttpServletRequest request,ModelMap model){
+        
+        HttpSession session = request.getSession(false);
+
+        if(session != null){
+            Usuario usuario = (Usuario) session.getAttribute("usuariosession");
+
+            if(usuario != null){
+                
+                model.addAttribute("nombre", usuario.getNombre());
+                model.addAttribute("apellido", usuario.getApellido());
+                model.addAttribute("email", usuario.getEmail());
+                model.addAttribute("id", usuario.getId());
+                model.addAttribute("fecha", usuario.getFecha_creacion());
+            }
+        }
+        return "perfil";
+    }
+    
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    @GetMapping("/perfil/{id}")
+    public String perfilById(@PathVariable("id") Long id , ModelMap model){
+        
+        Usuario usuario = usuarioServicio.buscarUsuarioPorId(id);
+
+        if(usuario != null){
+                
+            model.addAttribute("nombre", usuario.getNombre());
+            model.addAttribute("apellido", usuario.getApellido());
+            model.addAttribute("email", usuario.getEmail());
+            model.addAttribute("id", usuario.getId());
+        }
+        
         return "perfil";
     }
 
@@ -58,24 +88,8 @@ public class PortalControlador {
          return "usuario_form";
      }
 
-    @GetMapping("/{id}/perfil")
-    public String perfilUsuario(@PathVariable String email, ModelMap modelo) {
-        
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
-
-        Usuario usuario = usuarioServicio.buscarPorEmail(email);
-
-        if (!usuario.getEmail().equals(username)) {
-            
-            return "redirect: index";
-        }
-
-        modelo.addAttribute("nombre", usuario.getNombre());
-        modelo.addAttribute("apellido", usuario.getApellido());
-        modelo.addAttribute("email", usuario.getEmail());
-        
-        return "perfil_usuario"; // El nombre de la vista de perfil de usuario
-    }
-
+     @GetMapping("/publicar")
+     public String publicar() {
+         return "publicar";
+     }
 }

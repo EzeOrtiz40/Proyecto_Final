@@ -79,38 +79,29 @@ public class UsuarioControlador {
             @RequestParam String password2,
             @RequestParam(required = false) MultipartFile archivo, ModelMap model) {
         
-            Imagen imagen;
-        try {
-            
-            Imagen guest_imagen = usuarioServicio.buscarPorEmail("guest@test.com").getImagen();
-
-            if(archivo.getContentType().equals("application/octet-stream")) {
-                imagen = imagenServicio.guardarImagen(new Imagen(guest_imagen.getMime()
-                                                                , guest_imagen.getNombre()
-                                                                , guest_imagen.getContenido()));
-                System.out.println(imagen.getMime()+ "  Estoy en el if ");
-            }
-            
-            else{
-
-              imagen = imagenServicio.guardar(archivo);
-                System.out.println("Estoy en el else");
-            }
-            
-            usuarioServicio.agregar(nombre, apellido, email, password,password2, imagen);
-            model.put("exito", "Usuario creado correctamente");
-
-            return "login";
-
-        } catch (Exceptiones e) {
-            model.put("error", e.getMessage());
-            model.put("nombre", nombre);
-            model.put("apellido", apellido);
-            model.put("email", email);
-            
-            //return "redirect:/usuario/registrar";
-            return "usuario_form";
-        }
-
+                Imagen imagen;
+                
+                try {
+                    // Si el usuario carga una imagen, se ejecuta el if, si no, se carga la imagen del usuario guest
+                    if (archivo.getContentType().equals("application/octet-stream")) {
+                        Imagen guest_imagen = usuarioServicio.buscarPorEmail("guest@test.com").getImagen(); 
+                        imagen = imagenServicio.guardarImagen(new Imagen(guest_imagen.getMime(), guest_imagen.getNombre(), guest_imagen.getContenido()));
+                    } else {
+                        imagen = imagenServicio.guardar(archivo);
+                    }
+                    
+                    usuarioServicio.agregar(nombre, apellido, email, password,password2, imagen);
+                    model.put("exito", "Usuario creado correctamente");
+        
+                    return "login";
+        
+                } catch (Exceptiones e) {
+                    model.put("error", e.getMessage());
+                    model.put("nombre", nombre);
+                    model.put("apellido", apellido);
+                    model.put("email", email);
+                    
+                    return "usuario_form";
+                }
     }
 }
