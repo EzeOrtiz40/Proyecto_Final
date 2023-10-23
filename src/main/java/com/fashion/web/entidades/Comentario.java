@@ -11,7 +11,7 @@ public class Comentario {
 
     @Id
     @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid" , strategy = "uuid")
-    private String id;
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    private Long id; 
     
 }

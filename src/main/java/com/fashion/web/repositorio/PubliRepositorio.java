@@ -10,10 +10,10 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface PubliRepositorio extends JpaRepository<Publicacion, String> {
+public interface PubliRepositorio extends JpaRepository<Publicacion, Long> {
 
     @Query("SELECT p FROM Publicacion p WHERE p.id = :id")
-    public Publicacion buscarPorId(@Param("id") String id);
+    public Publicacion buscarPorId(@Param("id") Long id);
 
     
 }

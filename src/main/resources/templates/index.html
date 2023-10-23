@@ -9,17 +9,17 @@
   <body>
     <!-- heaher  -->
     <nav class="container-nav">
-      <a href="#" class="logo">Nombre</a>
+      <a href="#" class="logo">INICIO</a>
 
       <input type="text" class="nav-input" placeholder="Ingrese un nombre..." />
 
       <ul class="nav-list">
-        <li><a href="/" class="nav-item">Inicio</a></li>
-        <li><a href="/login" class="nav-item">Iniciar sesion</a></li>
-        <li><a href="/logout" class="nav-item">Cerrar sesion</a></li>
-        <li><a href="/registrar" class="nav-item">Registrate</a></li>
-        <li><a href="/perfil" class="nav-item">Perfil</a></li>
-        <li><a href="/admin" class="nav-item">Admin</a></li>
+        <!-- <li><a href="/" class="nav-item">Inicio</a></li> -->
+        <li><a class="nav-item" th:if="${session.usuariosession == null}" href="/login">Iniciar sesion</a></li>
+        <!-- <li><a href="/logout" class="nav-item">Cerrar sesion</a></li> -->
+        <li><a class="nav-item" th:if="${session.usuariosession == null}" href="/registrar">Registrate</a></li>
+        <!-- <li><a href="/perfil" class="nav-item">Perfil</a></li> -->
+        <!-- <li><a href="/admin" class="nav-item">Admin</a></li> -->
       </ul>
     </nav>
 
@@ -75,47 +75,6 @@
       <section class="container">
         <div class="container-publication">
           <!-- ingresar publicacion -->
-          <div class="div-publication">
-            <div class="avatar">
-              <img src="" alt="perfil" />
-            </div>
-
-            <form
-              action=""
-              method=""
-              enctype="multipart/form-data"
-              class="form-publication">
-              <textarea name="" class="area-comment"></textarea>
-
-              <label for="categoria">Categoria</label>
-              
-                <select class="selector" id="categoria" name="categoria" type="text" required>
-                    <option value="camisas">Camisas</option>
-                    <option value="pantalones">Pantalones</option>
-                    <option value="vestidos">Vestidos</option>
-                    <option value="chaquetas">Chaquetas</option>                 
-                </select>
-
-              <div class="button-upload">
-                <div class="contenedor__btn__file">
-                  <i class="far fa-image"></i>
-                  Adjuntar archivo
-                  <label for="file" class="btn__file"></label>
-                  <input
-                    type="file"
-                    name="archivo"
-                    accept="image/jpeg, image/png"
-                    id="file" />
-                </div>
-              </div>
-
-              <button class="button-send" type="submit">
-                <i class="fas fa-paper-plane"></i>
-                Publicar
-              </button>
-
-            </form>
-          </div>
 
           <!-- mostrar publicacion  -->
           <div class="publication-realized">
@@ -141,19 +100,18 @@
             </div>
 
             <!-- BOTON DE DAR LIKE  -->
-            <div class="div-like-comment">
+            <!-- <div class="div-like-comment">
                 
                   <button type="submit" class=" public-btn button-like" onclick="toggleLike()">
-                    <!-- <i class="fa-solid fa-thumbs-up"></i> -->
                     <i class="fa-regular fa-thumbs-up"></i>
                     like
                   </button>
 
                   <button class="public-btn button-comment" onclick="mostrarDiv()">Comentar</button>
 
-            </div>
+            </div> -->
             <!-- AREA DE INGRESAR COMENTARIO  -->
-            <aside id="miDiv">
+            <!-- <aside id="miDiv">
 
               <form
                 action=""
@@ -162,7 +120,6 @@
                 class="form-publication">
 
                 <textarea name="" class="area-comment" placeholder="Ingresa tu comentario aqui..."></textarea>
-                <!-- <button onclick="ocultarDiv()">Ocultar Div</button> -->
 
                 <button class="button-send-comentario" type="submit">
                   <i class="fas fa-paper-plane"></i>
@@ -170,12 +127,12 @@
                 </button>
 
               </form>
-            </aside>
+            </aside> -->
           
         </div>
 
       </section>
-
+<!-- 
       <aside class="perfil">
         <div class="container-perfil">
       
@@ -193,7 +150,7 @@
           </div>  
 
         </div>
-      </aside>
+      </aside> -->
 
     </div>
 

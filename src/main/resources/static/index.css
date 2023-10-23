@@ -404,6 +404,10 @@ input:focus,
     color: #fff;
 } */
 
+.id-usuario-publicacion {
+    display: none;
+}
+
 .button-send > i {
     margin-right: 5px;
 }

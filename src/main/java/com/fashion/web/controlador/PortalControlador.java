@@ -50,10 +50,10 @@ public class PortalControlador {
         return "login";
     }
     
-     @GetMapping("/registrar")
-     public String registrar() {
+    @GetMapping("/registrar")
+    public String registrar() {
          return "usuario_form";
-     }
+    }
 
     // @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     // @GetMapping("/perfil")

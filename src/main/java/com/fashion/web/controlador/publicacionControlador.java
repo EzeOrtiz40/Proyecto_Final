@@ -8,54 +8,76 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.fashion.web.Enumeraciones.RolCategoria;
 import com.fashion.web.entidades.Imagen;
 import java.util.List;
 import com.fashion.web.entidades.Publicacion;
-import com.fashion.web.entidades.Usuario;
-
-import com.fashion.web.servicios.publicacionServicio;
+import com.fashion.web.exceptiones.Exceptiones;
+import com.fashion.web.servicios.ImagenServicio;
+import com.fashion.web.servicios.PublicacionServicio;
 
 @Controller
 @RequestMapping("/")
 public class publicacionControlador {
 
     @Autowired
-    private publicacionServicio ps;
+    private PublicacionServicio ps;
 
-    @GetMapping("/generar")
-    public String publicacion() {
-        return "generar_noticia.html";
-    }
+    @Autowired
+    private ImagenServicio imagenServicio;
 
-    @PostMapping("/generado")
-    public String subida(@RequestParam String titulo, @RequestParam String contenido, Imagen im_publicacion,
-            ModelMap modelo, Usuario user_publicacion) {
+    // @GetMapping("/generar")
+    // public String publicacion() {
+    //     return "generar_noticia.html";
+    // }
+
+    @PostMapping("/publicacion")
+    public String subida(@RequestParam String contenido, @RequestParam RolCategoria rolCategoria,
+            @RequestParam MultipartFile archivo,
+            ModelMap modelo, Long id_user_publicacion) throws Exceptiones {
+
+            System.out.println("EsTOY ENTRANDO A LA RUTA PUCLICACION"); 
+            System.out.println(contenido);  
+            System.out.println(id_user_publicacion); 
+
+            Imagen imagen = null;    
+            imagen = imagenServicio.guardar(archivo); 
+                
         try {
-            ps.crearPublicacion(titulo, contenido, null, user_publicacion);
+            ps.crearPublicacion(contenido, rolCategoria, imagen, id_user_publicacion);
             modelo.put("Éxito", "La publicación fué subida con éxito");
         } catch (Exception e) {
             modelo.put("Error", "La publicación no pudo ser subida");
-            return "generar_noticia.html";
+            return "inicio";
         }
-        return "generar_noticia.html";
+        return "inicio";
     }
 
-    @GetMapping("/ultimaspublicaciones")
-    public String ultimas(ModelMap modelo){
+    @GetMapping("/mostrarPublicacion")
+    public String mostrarPublicaciones(ModelMap modelo){
         List <Publicacion> publicaciones = ps.listarPublicaciones();
-        modelo.put("publicaciones", publicaciones);
-        return "ultimasPublicaciones.html";
+
+        System.out.println("ESTOY EN EL METODO MOSTRAR PUBLICACION");
+
+        for (Publicacion publicacion : publicaciones) {
+            System.out.println(publicacion.toString());
+        }
+
+        modelo.addAttribute("publicaciones", publicaciones);
+        return "inicio";
     }
 
     @GetMapping("/eliminar/{id}")
-    public String eliminar(@PathVariable String id, ModelMap modelo){
-        ps.eliminarPublicacion(id);
+    public String eliminar(@PathVariable Long id, ModelMap modelo){
+        ps.eliminarPublicacion(null);
         return null;
         /*return "redirect:..(encargate frontman)" PUSE NULL PARA QUE NO SALTE NINGUN AVISO*/
     }
 
     @GetMapping("/verPublicacion/{id}")
-    public String verPublicacion(@PathVariable String id, ModelMap modelo) {
+    public String verPublicacion(@PathVariable Long id, ModelMap modelo) {
         Publicacion publicacion = ps.buscarPorId(id);
         modelo.addAttribute("publicacion", publicacion);
         return "verPublicacion.html";
