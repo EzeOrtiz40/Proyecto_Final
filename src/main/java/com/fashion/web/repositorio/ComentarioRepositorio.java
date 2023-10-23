@@ -1,9 +1,6 @@
 package com.fashion.web.repositorio;
 
 
-
-import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -20,7 +17,5 @@ public interface ComentarioRepositorio extends JpaRepository<Comentario, Long> {
     @Query("DELETE FROM Comentario c WHERE c.id = :id")
     public Comentario eliminarById(@Param("id") Long id);
 
-    @Query("SELECT c FROM Comentario LOWER(c.texto) LIKE %:palabraClave%")
-    public List<Comentario> buscarConPalabra(@Param("String") String texto );
 }
 
