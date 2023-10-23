@@ -8,7 +8,10 @@ import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import lombok.Data;
+
 @Entity
+@Data
 public class Like {
 
     @Id
@@ -19,7 +22,7 @@ public class Like {
     @OneToOne
     private Usuario usuario;
 
-    @OneToMany
+    @OneToOne
     private Publicacion publicacion;
-    
+
 }

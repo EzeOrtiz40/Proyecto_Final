@@ -3,7 +3,6 @@ package com.fashion.web.servicios;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 

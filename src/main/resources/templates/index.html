@@ -33,11 +33,13 @@
           </div>
 
           <form
-            action=""
-            method=""
+            action="/publicacion/agregar"
+            method="post"
             enctype="multipart/form-data"
-            class="form-publication">
-            <textarea name="" class="area-comment"></textarea>
+            class="form-publication"
+          >
+            <input name="titulo" class="area-comment" />
+            <input name="contenido" class="area-comment" />
 
             <div class="button-upload">
               <div class="contenedor__btn__file">
@@ -48,7 +50,8 @@
                   type="file"
                   name="archivo"
                   accept="image/jpeg, image/png"
-                  id="file" />
+                  id="file"
+                />
               </div>
             </div>
 
@@ -94,6 +97,7 @@
 
     <script
       src="https://kit.fontawesome.com/bd21d83e0d.js"
-      crossorigin="anonymous"></script>
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
