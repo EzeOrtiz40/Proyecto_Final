@@ -74,6 +74,7 @@ public class PortalControlador {
     public String perfilById(@PathVariable("id") Long id , ModelMap model){
         
         Usuario usuario = usuarioServicio.buscarUsuarioPorId(id);
+        List<Publicacion> publicaciones = publicacionServicio.listarPorId(usuario.getId());
 
         if(usuario != null){
                 
@@ -81,6 +82,8 @@ public class PortalControlador {
             model.addAttribute("apellido", usuario.getApellido());
             model.addAttribute("email", usuario.getEmail());
             model.addAttribute("id", usuario.getId());
+            model.addAttribute("fecha", usuario.getFecha_creacion());
+            model.addAttribute("publicaciones", publicaciones);
         }
         
         return "perfil";
