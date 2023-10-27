@@ -1,0 +1,24 @@
+.container {
+  margin-top: 20px;
+}
+
+.publicacion-container {
+  background-color: black;
+}
+
+.img-perfil {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.name {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+}
+
+.comentarios-container {
+  max-height: 300px;
+  overflow-y: auto;
+}

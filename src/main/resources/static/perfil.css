@@ -1,105 +1,36 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
-}
-
-header {
-  background-color: #333;
-  color: #fff;
-  text-align: right;
-  padding: 10px;
-}
-/* header  */
-.container-nav {
-  position: fixed;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 3%;
-
-  background-color: #3866f2;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  font-size: 33px;
-  font-weight: 700;
-  text-decoration: none;
-  color: #fff;
-}
-
-.nav-input {
-  display: flex;
-  width: 30%;
-  height: 35px;
-  background-color: #f4f4f4;
-  border-radius: 5px;
-  overflow: hidden;
-
-  padding: 8px; /* establece el espacio interno dentro del textarea */
-  font-family: "Roboto", sans-serif;
-  font-weight: 300;
-  font-size: 0.8rem;
-  border: 10px solid transparent;
-}
-
-.nav-list {
-  display: flex;
-  list-style-type: none;
-}
-
-.nav-item {
-  text-decoration: none;
-  font-weight: 300;
-  margin: 0 10px;
-  color: #fff;
-}
-
-.cabecera a {
-  color: #fff;
-  text-decoration: none;
-  margin: 0 10px;
-}
-
-.perfil {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  margin: 10px;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.banner img {
-  width: 100%;
-  max-height: 200px;
-}
-
-.foto-perfil img {
+#profile-image {
+  border-radius: 50%;
   width: 150px;
   height: 150px;
-  border-radius: 50%;
-  margin-top: -75px;
-  border: 5px solid #fff;
 }
 
-.publicaciones {
-  margin: 10px;
+.container {
+  padding: 30px 20px 0px;
 }
 
-.publicacion {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  margin-bottom: 10px;
-  padding: 10px;
+.profile-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.publicacion img {
-  max-width: 100%;
-  height: auto;
+.profile-data {
+  width: 100%;
 }
 
-/* Agrega más estilos según tus preferencias */
+.name {
+  font-size: larger;
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
+  color: black;
+  margin-right: 20px;
+}
+
+.btn {
+  border-radius: 6px;
+  padding: 4px 16px;
+}
+
+.separator {
+  margin-bottom: 20px;
+}

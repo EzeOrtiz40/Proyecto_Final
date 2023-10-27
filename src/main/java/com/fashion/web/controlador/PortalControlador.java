@@ -1,5 +1,7 @@
 package com.fashion.web.controlador;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.fashion.web.entidades.Publicacion;
 import com.fashion.web.entidades.Usuario;
 import com.fashion.web.servicios.UsuarioServicio;
+import com.fashion.web.servicios.PublicacionServicio;
 
 @Controller
 @RequestMapping("/")
@@ -19,6 +24,10 @@ public class PortalControlador {
     
     @Autowired
     UsuarioServicio usuarioServicio;
+
+    @Autowired
+    PublicacionServicio publicacionServicio;
+
     @GetMapping("/")
     public String Index() {
         return "index";
@@ -45,6 +54,7 @@ public class PortalControlador {
 
         if(session != null){
             Usuario usuario = (Usuario) session.getAttribute("usuariosession");
+            List<Publicacion> publicaciones = publicacionServicio.listarPorId(usuario.getId());
 
             if(usuario != null){
                 
@@ -53,6 +63,7 @@ public class PortalControlador {
                 model.addAttribute("email", usuario.getEmail());
                 model.addAttribute("id", usuario.getId());
                 model.addAttribute("fecha", usuario.getFecha_creacion());
+                model.addAttribute("publicaciones", publicaciones);
             }
         }
         return "perfil";
@@ -63,6 +74,7 @@ public class PortalControlador {
     public String perfilById(@PathVariable("id") Long id , ModelMap model){
         
         Usuario usuario = usuarioServicio.buscarUsuarioPorId(id);
+        List<Publicacion> publicaciones = publicacionServicio.listarPorId(usuario.getId());
 
         if(usuario != null){
                 
@@ -70,6 +82,8 @@ public class PortalControlador {
             model.addAttribute("apellido", usuario.getApellido());
             model.addAttribute("email", usuario.getEmail());
             model.addAttribute("id", usuario.getId());
+            model.addAttribute("fecha", usuario.getFecha_creacion());
+            model.addAttribute("publicaciones", publicaciones);
         }
         
         return "perfil";

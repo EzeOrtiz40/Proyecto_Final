@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface PubliRepositorio extends JpaRepository<Publicacion, Long>{
+public interface PubliRepositorio extends JpaRepository<Publicacion, Long> {
 
     @Query("SELECT p FROM Publicacion p WHERE p.id = :id")
     public Publicacion buscarPorId(@Param("id") Long id);
@@ -19,5 +19,8 @@ public interface PubliRepositorio extends JpaRepository<Publicacion, Long>{
 
     @Query("SELECT p FROM Publicacion p ORDER BY p.fecha DESC")
     public List<Publicacion> trerRecientes(@Param("id") Long id);
+
+    @Query("SELECT p FROM Publicacion p WHERE p.usuario.id = :id")
+    public List<Publicacion> buscarPorIdUsuario(@Param("id") Long id);
 
 }

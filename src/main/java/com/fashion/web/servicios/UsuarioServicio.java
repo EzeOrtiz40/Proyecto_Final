@@ -3,10 +3,7 @@ package com.fashion.web.servicios;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -20,7 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-
 import com.fashion.web.Enumeraciones.Rol;
 import com.fashion.web.entidades.Imagen;
 import com.fashion.web.entidades.Usuario;

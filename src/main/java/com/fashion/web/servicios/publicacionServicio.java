@@ -1,7 +1,6 @@
 package com.fashion.web.servicios;
 
 
-
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,12 +8,11 @@ import com.fashion.web.entidades.Imagen;
 import com.fashion.web.entidades.Publicacion;
 import com.fashion.web.exceptiones.Exceptiones;
 import com.fashion.web.repositorio.PubliRepositorio;
-
-
 import java.util.Optional;
 import java.util.List;
+import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Date;
+
 
 
 @Service
@@ -90,4 +88,14 @@ public class PublicacionServicio {
 
     }
 
-}
+ public List<Publicacion> listarPorId(Long id) {
+        return publiRepositorio.buscarPorIdUsuario(id);
+    }
+
+    public Publicacion getById(Long id) {
+        Optional<Publicacion> respuesta = publiRepositorio.findById(id);
+        return (respuesta.isPresent()) ? respuesta.get() : null;
+    }
+
+   }
+

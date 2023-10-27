@@ -7,7 +7,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import org.hibernate.annotations.GenericGenerator;
 
+import lombok.Data;
+
 @Entity
+@Data
 public class PublicacionLike {
 
     @Id
@@ -24,3 +27,4 @@ public class PublicacionLike {
     private Usuario usuario;
     
 }
+

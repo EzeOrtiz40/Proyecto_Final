@@ -6,13 +6,9 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-//import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-//import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import java.util.Date;
-//import java.util.List;
-
 import com.fashion.web.Enumeraciones.RolCategoria;
 import org.hibernate.annotations.GenericGenerator;
 import lombok.Data;
@@ -36,10 +32,6 @@ public class Publicacion {
     @OneToOne
     private Imagen imagenPublicacion;
     
-    // @OneToMany(mappedBy = "publicacion")
-    // private List<Comentario> comentarios;
-
-    //@JoinColumn(name = "usuario_id")
     @ManyToOne
     private Usuario usuario;
 
