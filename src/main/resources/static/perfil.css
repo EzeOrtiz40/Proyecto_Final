@@ -1,3 +1,7 @@
+body {
+  background-color: #dedee7;
+}
+
 #profile-image {
   border-radius: 50%;
   width: 150px;
@@ -5,17 +9,27 @@
 }
 
 .container {
+  margin-top: 45px;
   padding: 30px 20px 0px;
 }
 
 .profile-image-container {
+  padding: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .profile-data {
+  background-color: #ececff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 100%;
+  border-radius: 5px;
+}
+
+.card {
+  width: 600px;
+  height: 400px;
 }
 
 .name {
@@ -33,4 +47,117 @@
 
 .separator {
   margin-bottom: 20px;
+}
+
+.card-body {
+  padding: 5px;
+  background-color: #ececff;
+  text-align: left;
+  border-top: 10px;
+  align-items: flex-start;
+}
+
+.card-body p {
+  text-align: center;
+}
+.card-imagen {
+  align-items: center;
+  align-content: center;
+  width: 600px;
+}
+.card-img-bottom {
+  border-bottom: none;
+}
+
+.row p h5 {
+  text-align: center;
+}
+.interacciones {
+  padding-top: 5px;
+  align-items: center;
+  align-content: center;
+  text-align: left;
+}
+.publicacion-container {
+  display: flex;
+  width: 600px;
+  height: auto;
+  align-items: center;
+  text-align: center;
+  margin-top: 10px;
+}
+.row-container {
+  align-items: center;
+  align-content: center;
+  text-align: center;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  background-color: #ececff;
+  height: 90px;
+}
+
+/* header  */
+.container-nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 3%;
+  z-index: 1;
+  background-color: #9263d9;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 33px;
+  font-weight: 700;
+  text-decoration: none;
+  color: #fff;
+}
+
+.nav-input {
+  display: flex;
+  width: 30%;
+  height: 35px;
+  background-color: #f4f4f4;
+  border-radius: 5px;
+  overflow: hidden;
+
+  padding: 8px; /* establece el espacio interno dentro del textarea */
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-size: 0.8rem;
+  border: 10px solid transparent;
+}
+
+.nav-list {
+  display: flex;
+  list-style-type: none;
+}
+
+.nav-item {
+  text-decoration: none;
+  font-weight: 300;
+  margin: 0 10px;
+  color: #fff;
+}
+
+/*css para mostar cantidad de likes*/
+.like-count {
+  display: inline-block;
+  background-color: #9263d9; /* Color de fondo del círculo */
+  color: #fff; /* Color del texto */
+  border-radius: 50%; /* Para que sea un círculo */
+  width: 20px; /* Ancho del círculo */
+  height: 20px; /* Altura del círculo */
+  text-align: center;
+  line-height: 20px; /* Para centrar verticalmente el texto */
+  margin-left: 5px; /* Espacio entre el ícono y el contador */
 }

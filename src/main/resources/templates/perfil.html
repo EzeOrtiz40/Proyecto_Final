@@ -7,46 +7,39 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
-    />
+      crossorigin="anonymous" />
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
-    />
-    <link rel="stylesheet" href="/perfil.css" />
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="perfil.css" />
     <title>Perfil</title>
   </head>
   <body>
+    <div class="row-nav">
+      <nav th:replace="fragments/nav :: nav"></nav>
+    </div>
+
     <div class="container">
+      <div class="separator"></div>
+
       <div class="profile-data row">
         <div class="profile-image-container col-4">
           <img
             th:src="@{'/imagen/perfil/' + ${id}}"
             alt="profile-image"
-            id="profile-image"
-          />
+            id="profile-image" />
         </div>
         <div class="profile-info col-8">
           <div class="row align-items-center">
             <div class="interacciones col-12">
               <a href="#" class="name" th:text="${nombre}"></a>
-              <button type="button" class="btn btn-primary btn-sm offset-md-1">
-                Seguir
-              </button>
-              <button type="button" class="btn btn-light btn-sm">
-                Enviar Mensaje
-              </button>
+
               <button type="button" class="btn btn-light btn-sm offset-md-1">
                 <i class="bi bi-three-dots"></i>
               </button>
             </div>
           </div>
           <div class="separator"></div>
-          <div class="row">
-            <div class="col">creacion: <b th:text="${fecha}"></b></div>
-            <div class="col"><b>22</b> publicaciones</div>
-            <div class="col"><b>26</b> seguidores</div>
-          </div>
           <div class="separator"></div>
           <div class="row">
             <h5>¡Hola, soy David Ezequiel Ortiz! 👋</h5>
@@ -55,21 +48,18 @@
         </div>
       </div>
       <div class="separator"></div>
-      <div class="row text-center">
+      <div class="row-container">
         <div class="col"><h4>Ultimas publicaciones:</h4></div>
       </div>
-      <div class="row" th:each="publicacion : ${publicaciones}">
+      <div class="row-publicacion" th:each="publicacion : ${publicaciones}">
         <div class="col">
-          <div
-            class="publicacion-container container d-flex justify-content-center align-items-center"
-          >
-            <div class="card" style="width: 24rem">
+          <div class="publicacion-container container">
+            <div class="card-imagen">
               <div class="card-body">
                 <img
                   th:src="@{'/imagen/perfil/' + ${id}}"
                   alt="profile-image"
-                  style="width: 32px; border-radius: 50%"
-                />
+                  style="width: 32px; border-radius: 50%" />
                 <b th:text="${nombre}"></b
                 ><small class="text-body-secondary"> 1 d</small>
                 <p class="card-text" th:text="${publicacion.contenido}"></p>
@@ -77,16 +67,22 @@
               <img
                 th:src="@{'/imagen/' + ${publicacion.imagenPublicacion.id}}"
                 class="card-img-bottom"
-                alt="..."
-              />
+                alt="..." />
               <div class="card-footer">
                 <button class="btn">
-                  <i class="bi bi-hand-thumbs-up"></i>
+                  <i
+                    class="bi bi-hand-thumbs-up"
+                    id="like-buttom"
+                    th:data-publicacion-id="${publicacion.id}"
+                    th:onclick="darLike('${publicacion.id}')"></i>
+                  <span class="like-count" id="likes-count">0</span>
+                  <!--aca tengo que hacer una magia copada -->
                 </button>
                 <button class="btn">
-                  <i class="bi bi-chat"></i>
+                  <i class="bi bi-chat" id="comentario-bottom"></i>
+                  <!-- aparece y desaparece caja de comentarios  -->
                 </button>
-                <button class="btn"><i class="bi bi-share"></i></button>
+                <!-- <button class="btn"><i class="bi bi-share"></i></button> no vamos a compartir nada -->
               </div>
               <a th:href="@{'/publicacion/p/' + ${publicacion.id}}"
                 >Ver comentarios</a
@@ -97,5 +93,6 @@
       </div>
       <div class="separator"></div>
     </div>
+    <script src="/js/meGusta.js"></script>
   </body>
 </html>

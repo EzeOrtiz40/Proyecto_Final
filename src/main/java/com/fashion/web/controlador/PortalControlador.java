@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.fashion.web.entidades.Publicacion;
 import com.fashion.web.entidades.Usuario;
 import com.fashion.web.servicios.UsuarioServicio;
@@ -29,14 +28,18 @@ public class PortalControlador {
     PublicacionServicio publicacionServicio;
 
     @GetMapping("/")
-    public String Index() {
+    public String Index(ModelMap model) {
+        
+        List<Publicacion> publicaciones = publicacionServicio.listarPublicaciones();
+        model.put("publicaciones", publicaciones);
+        model.put("css", "index.css");
         return "index";
     }
 
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("/inicio")
-    public String inicio(HttpSession session){
-
+    public String inicio(HttpSession session, ModelMap model){
+        model.put("css", "index.css");
         Usuario logueado = (Usuario) session.getAttribute("usuariosession");
 
         if(logueado.getRol().toString().equals("ADMIN")){
@@ -66,6 +69,7 @@ public class PortalControlador {
                 model.addAttribute("publicaciones", publicaciones);
             }
         }
+        model.put("css", "index.css");
         return "perfil";
     }
     
@@ -94,6 +98,7 @@ public class PortalControlador {
         if(error != null){
             model.put("error", "Usuario o contrasena invalidos!!");
         }
+        model.put("css","login.css");
         return "login";
     }
     

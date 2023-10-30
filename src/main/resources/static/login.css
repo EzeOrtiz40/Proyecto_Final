@@ -1,0 +1,134 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #e5e5f7;
+  /*opacity: 0.8;**/
+  background-image: radial-gradient(#c92fa9 0.5px, transparent 0.5px),
+    radial-gradient(#c92fa9 0.5px, #e5e5f7 0.5px);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+  display: flex;
+  min-height: 100vh;
+}
+
+.form {
+  background-color: #fff;
+  margin: auto; /*Alinear al medio gracias al flexbox*/
+  width: 90%;
+  max-width: 400px;
+  padding: 4.5em 3em; /*Espacio en los lados*/
+  border-radius: 10px;
+  box-shadow: 0px 5px 10px -5px rgba(0, 0, 0, 30%); /*sombreado*/
+  text-align: center;
+}
+
+.form__title {
+  font-size: 2rem; /*Tamaño de la letra*/
+  margin-bottom: 0.5em; /*Espacio en la parte de abajo*/
+}
+
+.form__paragraph {
+  font-weight: 300; /*Ancho de la letra*/
+}
+
+.form__link {
+  font-weight: 400;
+  color: #000;
+  text-decoration: none;
+}
+
+.form__link:hover {
+  color: #3866f2;
+}
+
+.form__container {
+  margin-top: 3em; /*Espacio en la parte de arriba*/
+  display: grid;
+  gap: 2.5em; /*Espaciado entre cada elemento*/
+}
+
+.form__group {
+  position: relative;
+  --color: #5757577e; /*No veo ningun cambio */
+}
+
+.form__input {
+  width: 100%; /*Hereda grid y le damos el 100% de ancho y el nombre cae abajo*/
+  background: none;
+  color: #706c6c;
+  font-size: 1rem; /*Tamaño del imput*/
+  padding: 0.6em 0.3em;
+  border: none;
+  outline: none; /*cuando hace click al imput no aparece el borde negro*/
+  border-bottom: 1px solid var(--color); /*borde en la parte de abajo y el color trae de for__group*/
+  font-family: "Roboto", sans-serif; /*Los inputs no eredan la fuente por defecto*/
+}
+
+/*Cuando el form__input este activo o este en focus y cuando no se muestre el placeholder
+tenga un color mas oscuro*/
+/*.form__input:focus,*/
+/*Le comento el form__input porque es lo mismo*/
+.form__input:not(:placeholder-shown) {
+  color: #4d4646; /*Es para el color de la letra del form__input*/
+}
+
+/*Efecto para que suba en label*/
+/*Cuando el form__input este activo su hermano directo form__label se vera afectado*/
+/* Se hace con el selector + o el selector adyacente*/
+.form__input:focus + .form__label,
+/*Tambien validamos cuando el form__input ya no este vacio*/
+/*Cuando el placeholder no se muestre, quiero que form__label cambie que es su hermano adyacente*/
+.form__input:not(:placeholder-shown) + .form__label {
+  transform: translateY(-12px) scale(0.7);
+  transform-origin: left top;
+  color: #3866f2;
+}
+
+.form__label {
+  color: var(--color);
+  cursor: pointer;
+  position: absolute; /*para que se posicione absolutamente a form__group*/
+  top: 0;
+  left: 5px;
+  transform: translateY(10px); /*para bajar un poco los nombres*/
+  transition: transform 0.5s, color 0.3s;
+}
+
+.form__submit {
+  background: #3866f2;
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  padding: 0.8em 0;
+  border: none;
+  border-radius: 0.5em;
+}
+
+/*Es la linea de abajo*/
+.form__line {
+  position: absolute; /*Se posiciona absolutamente al form__group*/
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #3866f2;
+  /*Para la transicion de la linea de abajo*/
+  transform: scale(0);
+  transform: left bottom; /* El origen de la transformacion empiece arriba y abajo*/
+  transition: transform 0.4s;
+}
+
+/*Es para cuando estemos en focus o cuando el placeholder no este activo
+la linea de abajo se ponga azul de lo contrario estara en gris*/
+.form__input:focus ~ .form__line, /*Usamos el selector de hermanos*/
+.form__input:not(:placeholder-shown) ~ .form__line {
+  transform: scale(1);
+}

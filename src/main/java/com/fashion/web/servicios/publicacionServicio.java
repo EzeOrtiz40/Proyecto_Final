@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.fashion.web.entidades.Imagen;
 import com.fashion.web.entidades.Publicacion;
+import com.fashion.web.entidades.Usuario;
 import com.fashion.web.exceptiones.Exceptiones;
 import com.fashion.web.repositorio.PubliRepositorio;
 import java.util.Optional;
@@ -40,7 +41,6 @@ public class PublicacionServicio {
 
                     throw new Exceptiones("No se pudo cargar la publicacion");
                 }
-                                
     }
 
     @Transactional
@@ -64,9 +64,7 @@ public class PublicacionServicio {
     }
 
     public List<Publicacion> listarPublicaciones(){
-        List<Publicacion> publicaciones = new ArrayList<>();
-        publicaciones = publiRepositorio.findAll();
-        return publicaciones;
+        return publiRepositorio.findAll();
     }
 
     public Publicacion getOne(Long id) { 

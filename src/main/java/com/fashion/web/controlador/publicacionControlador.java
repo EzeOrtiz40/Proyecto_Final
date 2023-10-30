@@ -55,18 +55,19 @@ public class PublicacionControlador {
         return "redirect:/perfil";
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-    @GetMapping("/p/{id}")
+    // @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    @GetMapping("/publicacion/{id}")
     public String vistaPublicacion(@PathVariable("id") Long id, ModelMap model, HttpSession session) {
-
+        model.put("css", "/index.css");
+        
         Publicacion publicacion = publicacionServicio.getOne(id);
         Usuario usuario = (Usuario) session.getAttribute("usuariosession");
         List<Comentario> comentarios = comentarioServicio.listarPorPublicacion(publicacion.getId());
-
-        model.put("publicacion", publicacion);
+        List<Publicacion> publicaciones = publicacionServicio.listarPorId(usuario.getId());
+        model.put("publicaciones", publicaciones);
         model.put("comentarios", comentarios);
-        model.put("usuariosession", usuario);
-
-        return "publicacion";
+        model.put("usuario", usuario);
+        
+        return "index";
     }
 }

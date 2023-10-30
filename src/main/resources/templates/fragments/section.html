@@ -1,0 +1,35 @@
+<section class="container" th:each="publicacion : ${publicaciones}">
+  <div class="container-publication">
+    <!-- mostrar publicacion  -->
+    <div class="publication-realized">
+      <div class="user-public">
+        <div class="avatar">
+          <img
+            th:src="@{'/imagen/perfil/' + ${publicacion.usuario.id}}"
+            alt="img" />
+        </div>
+        <div class="comment-publication">
+          <a class="link" th:href="@{'/perfil/' + ${publicacion.usuario.id}}">
+            <h4 th:text="${publicacion.usuario.nombre}"></h4>
+          </a>
+          <h5 th:text="${publicacion.fecha}"></h5>
+        </div>
+        <!--   falta aumentar reporte aqui -->
+      </div>
+
+      <p class="title-publicated" th:text="${publicacion.contenido}"></p>
+      <div class="file-publicated">
+        <img
+          th:src="@{'imagen/' + ${publicacion.imagenPublicacion.id}}"
+          alt="img" />
+      </div>
+      <div class="button-comment">
+        <button type="" class="button-like">
+          <i class="fas fa-thumbs-up"></i>
+          45
+        </button>
+        <button type="" class="button-comment">Comentar</button>
+      </div>
+    </div>
+  </div>
+</section>
