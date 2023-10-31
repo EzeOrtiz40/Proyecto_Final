@@ -161,3 +161,7 @@ body {
   line-height: 20px; /* Para centrar verticalmente el texto */
   margin-left: 5px; /* Espacio entre el ícono y el contador */
 }
+
+.spanText {
+  display: inline; /* Esto asegura que el contenido esté en la misma línea. */
+}
