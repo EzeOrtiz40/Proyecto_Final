@@ -1,5 +1,6 @@
 package com.fashion.web.controlador;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,20 +27,20 @@ public class ComentarioControlador {
 
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @PostMapping("/agregar")
-    public String agregarComentario(@RequestParam String comentario, @RequestParam Long publicacionid, HttpSession session) {
+    public String agregarComentario(@RequestParam String comentario, @RequestParam Long publicacionid,
+            HttpServletRequest request) {
+
+        HttpSession session = request.getSession(false);
         Usuario usuario = (Usuario) session.getAttribute("usuariosession");
+
         Publicacion publicacion = publicacionServicio.getById(publicacionid);
         try {
             comentarioServicio.agregar(comentario, publicacion, usuario);
         } catch (Exception e) {
-            System.out.println("*");
-            System.out.println("*");
-            System.out.println("*");
-            System.out.println("*");
-            System.out.println("*");
+
             System.out.println(e.getMessage());
         }
         return "redirect:/publicacion/p/" + publicacionid;
     }
-    
+
 }

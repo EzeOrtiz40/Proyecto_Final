@@ -2,7 +2,6 @@ package com.fashion.web.servicios;
 
 import java.util.List;
 
-
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,7 @@ public class ComentarioServicio {
     @Transactional
     public Comentario agregar(String texto, Publicacion publicacion, Usuario usuario) {
         Comentario comentario = new Comentario();
-        
+
         comentario.setTexto(texto);
         comentario.setPublicacion(publicacion);
         comentario.setUsuario(usuario);
@@ -33,4 +32,9 @@ public class ComentarioServicio {
     public List<Comentario> listarPorPublicacion(Long id) {
         return comentarioRepositorio.buscarPorIdPublicacion(id);
     }
+
+    public List<Comentario> listarTodos() {
+        return comentarioRepositorio.findAll();
+    }
+
 }

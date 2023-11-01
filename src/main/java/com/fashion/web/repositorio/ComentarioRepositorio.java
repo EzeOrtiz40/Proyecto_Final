@@ -9,7 +9,7 @@ import com.fashion.web.entidades.Comentario;
 
 @Repository
 public interface ComentarioRepositorio extends JpaRepository<Comentario, Long> {
-    
+
     @Query("SELECT c FROM Comentario c WHERE c.publicacion.id = :id ORDER BY c.id DESC")
     public List<Comentario> buscarPorIdPublicacion(@Param("id") Long id);
 }

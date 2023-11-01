@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import com.fashion.web.entidades.Imagen;
 import com.fashion.web.entidades.Usuario;
-import com.fashion.web.exceptiones.Exceptiones;
+import com.fashion.web.exceptiones.MegustaException;
 import com.fashion.web.servicios.ImagenServicio;
 import com.fashion.web.servicios.UsuarioServicio;
 
@@ -47,7 +47,7 @@ public class UsuarioControlador {
         return usuarioServicio.buscarPorEmail(email);
     }
 
-    @GetMapping("/nombre/{nombre}/lista")
+    @GetMapping("/{nombre}/lista")
     public List<Usuario> getNombres(@PathVariable String nombre) {
         return usuarioServicio.buscarPorNombre(nombre);
     }
@@ -78,30 +78,33 @@ public class UsuarioControlador {
             @RequestParam String password,
             @RequestParam String password2,
             @RequestParam(required = false) MultipartFile archivo, ModelMap model) {
-        
-                Imagen imagen;
-                
-                try {
-                    // Si el usuario carga una imagen, se ejecuta el if, si no, se carga la imagen del usuario guest
-                    if (archivo.getContentType().equals("application/octet-stream")) {
-                        Imagen guest_imagen = usuarioServicio.buscarPorEmail("guest@test.com").getImagen(); 
-                        imagen = imagenServicio.guardarImagen(new Imagen(guest_imagen.getMime(), guest_imagen.getNombre(), guest_imagen.getContenido()));
-                    } else {
-                        imagen = imagenServicio.guardar(archivo);
-                    }
-                    
-                    usuarioServicio.agregar(nombre, apellido, email, password,password2, imagen);
-                    model.put("exito", "Usuario creado correctamente");
-        
-                    return "login";
-        
-                } catch (Exceptiones e) {
-                    model.put("error", e.getMessage());
-                    model.put("nombre", nombre);
-                    model.put("apellido", apellido);
-                    model.put("email", email);
-                    
-                    return "usuario_form";
-                }
+
+        Imagen imagen;
+
+        try {
+            // Si el usuario carga una imagen, se ejecuta el if, si no, se carga la imagen
+            // del usuario guest
+            if (archivo.getContentType().equals("application/octet-stream")) {
+                Imagen guest_imagen = usuarioServicio.buscarPorEmail("guest@test.com").getImagen();
+                imagen = imagenServicio.guardarImagen(
+                        new Imagen(guest_imagen.getMime(), guest_imagen.getNombre(), guest_imagen.getContenido()));
+            } else {
+                imagen = imagenServicio.guardar(archivo);
+            }
+
+            usuarioServicio.agregar(nombre, apellido, email, password, password2, imagen);
+            model.put("exito", "Usuario creado correctamente");
+
+            return "login";
+
+        } catch (MegustaException e) {
+            model.put("error", e.getMessage());
+            model.put("nombre", nombre);
+            model.put("apellido", apellido);
+            model.put("email", email);
+
+            return "usuario_form";
+        }
     }
+
 }

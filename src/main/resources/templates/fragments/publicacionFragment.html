@@ -1,0 +1,38 @@
+<div class="row-publicacion" th:each="publicacion : ${publicaciones}">
+  <div class="col">
+    <div class="publicacion-container container">
+      <div class="card-imagen">
+        <div class="card-body">
+          <img
+            th:src="@{'/imagen/perfil/' + ${id}}"
+            alt="profile-image"
+            style="width: 32px; border-radius: 50%" />
+          <b th:text="${nombre}"></b
+          ><small class="text-body-secondary"> 1 d</small>
+          <p class="card-text" th:text="${publicacion.contenido}"></p>
+        </div>
+        <img
+          th:src="@{'/imagen/' + ${publicacion.imagenPublicacion.id}}"
+          class="card-img-bottom"
+          alt="..." />
+        <div class="card-footer">
+          <button
+            class="btn"
+            data-publicacion-id="${publicacion.id}"
+            th:onclick="darLike([[${publicacion.id}]])">
+            <i class="bi bi-hand-thumbs-up"></i>
+            <span class="like-count" id="likes-count">0</span>
+          </button>
+          <button class="btn">
+            <i class="bi bi-chat" id="comentario-bottom"></i>
+            <!-- aparece y desaparece caja de comentarios  -->
+          </button>
+          <!-- <button class="btn"><i class="bi bi-share"></i></button> no vamos a compartir nada -->
+        </div>
+        <a th:href="@{'/publicacion/p/' + ${publicacion.id}}"
+          >Ver comentarios</a
+        >
+      </div>
+    </div>
+  </div>
+</div>

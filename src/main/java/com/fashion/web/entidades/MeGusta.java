@@ -22,6 +22,5 @@ public class MeGusta {
 
     @ManyToOne
     private Usuario usuario;
-    
-}
 
+}

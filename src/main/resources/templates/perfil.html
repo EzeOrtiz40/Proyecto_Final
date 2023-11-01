@@ -52,51 +52,17 @@
         </div>
       </div>
       <div class="separator"></div>
+      <div th:replace="fragments/formPublicacion :: div"></div>
       <div class="row-container">
         <div class="col"><h4>Ultimas publicaciones:</h4></div>
       </div>
-      <div class="row-publicacion" th:each="publicacion : ${publicaciones}">
-        <div class="col">
-          <div class="publicacion-container container">
-            <div class="card-imagen">
-              <div class="card-body">
-                <img
-                  th:src="@{'/imagen/perfil/' + ${id}}"
-                  alt="profile-image"
-                  style="width: 32px; border-radius: 50%" />
-                <b th:text="${nombre}"></b
-                ><small class="text-body-secondary"> 1 d</small>
-                <p class="card-text" th:text="${publicacion.contenido}"></p>
-              </div>
-              <img
-                th:src="@{'/imagen/' + ${publicacion.imagenPublicacion.id}}"
-                class="card-img-bottom"
-                alt="..." />
-              <div class="card-footer">
-                <button class="btn">
-                  <i
-                    class="bi bi-hand-thumbs-up"
-                    id="like-buttom"
-                    th:data-publicacion-id="${publicacion.id}"
-                    th:onclick="darLike('${publicacion.id}')"></i>
-                  <span class="like-count" id="likes-count">0</span>
-                  <!--aca tengo que hacer una magia copada -->
-                </button>
-                <button class="btn">
-                  <i class="bi bi-chat" id="comentario-bottom"></i>
-                  <!-- aparece y desaparece caja de comentarios  -->
-                </button>
-                <!-- <button class="btn"><i class="bi bi-share"></i></button> no vamos a compartir nada -->
-              </div>
-              <a th:href="@{'/publicacion/p/' + ${publicacion.id}}"
-                >Ver comentarios</a
-              >
-            </div>
-          </div>
-        </div>
-      </div>
+      <div th:replace="fragments/publicacionFragment :: div"></div>
       <div class="separator"></div>
     </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"></script>
     <script src="/js/meGusta.js"></script>
   </body>
 </html>

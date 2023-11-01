@@ -1,22 +1,13 @@
+function darLike(id) {
 
+    console.log(typeof id);
+    const URLdomain = window.location.host;
+    const url = `http://${URLdomain}/likes/like/${id}`;
+    console.log(url);
 
-const publicacionId = document.getElementById("like-buttom").dataset.publicacionId;
-const idParsed = parseInt("publicacionId");
-
-console.log(publicacionId);
-
-function darLike(idParsed) {
-
-    fetch(`/likes/like/${idParsed}`, {
-        method: "POST"
-    })
+    fetch(url)
         .then((response) => {
-            if (response.ok) {
-                console.log(response);
-                return response.json();
-            } else {
-                throw new Error("No se pudo dar like");
-            }
+            return response.json();
         })
         .then((data) => {
             const likesCount = document.getElementById("likes-count");

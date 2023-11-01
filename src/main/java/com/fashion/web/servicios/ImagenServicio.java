@@ -5,20 +5,19 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.fashion.web.entidades.Imagen;
-import com.fashion.web.exceptiones.Exceptiones;
+import com.fashion.web.exceptiones.MegustaException;
 import com.fashion.web.repositorio.ImagenRepositorio;
 
 @Service
 public class ImagenServicio {
-    
+
     @Autowired
     private ImagenRepositorio imagenRepositorio;
 
-    public Imagen guardar(MultipartFile archivo) throws Exceptiones{
+    public Imagen guardar(MultipartFile archivo) throws MegustaException {
 
-        if(archivo != null){
+        if (archivo != null) {
             try {
                 Imagen imagen = new Imagen();
 
@@ -26,10 +25,11 @@ public class ImagenServicio {
                 imagen.setNombre(archivo.getName());
                 imagen.setContenido(archivo.getBytes());
 
-               return imagenRepositorio.save(imagen);
+                return imagenRepositorio.save(imagen);
 
             } catch (Exception e) {
-                System.err.println(e.getLocalizedMessage()+ "Puede que se haya un problema en el autogenerado de la imagen");
+                System.err.println(
+                        e.getLocalizedMessage() + "Puede que se haya un problema en el autogenerado de la imagen");
             }
 
         }
@@ -40,16 +40,16 @@ public class ImagenServicio {
         return imagenRepositorio.save(imagen);
     }
 
-    public Imagen actualizar(MultipartFile archivo, Long id) throws Exceptiones{
+    public Imagen actualizar(MultipartFile archivo, Long id) throws MegustaException {
 
-        if(archivo != null){
+        if (archivo != null) {
             try {
                 Imagen imagen = new Imagen();
 
-                if(id != null){
+                if (id != null) {
                     Optional<Imagen> respuesta = imagenRepositorio.findById(id);
 
-                    if(respuesta.isPresent()){
+                    if (respuesta.isPresent()) {
                         imagen = respuesta.get();
                     }
                 }

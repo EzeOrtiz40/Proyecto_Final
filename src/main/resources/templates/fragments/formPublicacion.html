@@ -1,0 +1,38 @@
+<!-- ingresar publicacion -->
+<div class="div-publication">
+  <div class="avatar">
+    <img th:src="@{'/imagen/perfil/' + ${id}}" alt="perfil" />
+  </div>
+
+  <form
+    action="/publicacion/agregar"
+    method="post"
+    enctype="multipart/form-data"
+    class="form-publication">
+    <input
+      name="titulo"
+      class="area-comment"
+      value="titulo"
+      type="text"
+      hidden />
+    <input name="contenido" class="area-comment" />
+
+    <div class="button-upload">
+      <div class="contenedor__btn__file">
+        <i class="far fa-image"></i>
+        Adjuntar archivo
+        <label for="file" class="btn__file"></label>
+        <input
+          type="file"
+          name="archivo"
+          accept="image/jpeg, image/png"
+          id="file" />
+      </div>
+    </div>
+
+    <button class="button-send" type="submit">
+      <i class="fas fa-paper-plane"></i>
+      Publicar
+    </button>
+  </form>
+</div>

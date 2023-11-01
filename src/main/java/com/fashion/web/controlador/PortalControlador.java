@@ -20,7 +20,7 @@ import com.fashion.web.servicios.PublicacionServicio;
 @Controller
 @RequestMapping("/")
 public class PortalControlador {
-    
+
     @Autowired
     UsuarioServicio usuarioServicio;
 
@@ -29,7 +29,7 @@ public class PortalControlador {
 
     @GetMapping("/")
     public String Index(ModelMap model) {
-        
+
         List<Publicacion> publicaciones = publicacionServicio.listarPublicaciones();
         model.put("publicaciones", publicaciones);
         model.put("css", "index.css");
@@ -38,11 +38,11 @@ public class PortalControlador {
 
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("/inicio")
-    public String inicio(HttpSession session, ModelMap model){
+    public String inicio(HttpSession session, ModelMap model) {
         model.put("css", "index.css");
         Usuario logueado = (Usuario) session.getAttribute("usuariosession");
 
-        if(logueado.getRol().toString().equals("ADMIN")){
+        if (logueado.getRol().toString().equals("ADMIN")) {
             return "redirect:/admin/dashboard";
         }
 
@@ -51,16 +51,16 @@ public class PortalControlador {
 
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("/perfil")
-    public String perfil(HttpServletRequest request,ModelMap model){
-        
+    public String perfil(HttpServletRequest request, ModelMap model) {
+
         HttpSession session = request.getSession(false);
 
-        if(session != null){
+        if (session != null) {
             Usuario usuario = (Usuario) session.getAttribute("usuariosession");
             List<Publicacion> publicaciones = publicacionServicio.listarPorId(usuario.getId());
 
-            if(usuario != null){
-                
+            if (usuario != null) {
+
                 model.addAttribute("nombre", usuario.getNombre());
                 model.addAttribute("apellido", usuario.getApellido());
                 model.addAttribute("email", usuario.getEmail());
@@ -72,16 +72,16 @@ public class PortalControlador {
         model.put("css", "index.css");
         return "perfil";
     }
-    
+
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("/perfil/{id}")
-    public String perfilById(@PathVariable("id") Long id , ModelMap model){
-        
+    public String perfilById(@PathVariable("id") Long id, ModelMap model) {
+
         Usuario usuario = usuarioServicio.buscarUsuarioPorId(id);
         List<Publicacion> publicaciones = publicacionServicio.listarPorId(usuario.getId());
 
-        if(usuario != null){
-                
+        if (usuario != null) {
+
             model.addAttribute("nombre", usuario.getNombre());
             model.addAttribute("apellido", usuario.getApellido());
             model.addAttribute("email", usuario.getEmail());
@@ -89,26 +89,26 @@ public class PortalControlador {
             model.addAttribute("fecha", usuario.getFecha_creacion());
             model.addAttribute("publicaciones", publicaciones);
         }
-        
+
         return "perfil";
     }
 
     @GetMapping("/login")
     public String login(@RequestParam(required = false) String error, ModelMap model) {
-        if(error != null){
+        if (error != null) {
             model.put("error", "Usuario o contrasena invalidos!!");
         }
-        model.put("css","login.css");
+        model.put("css", "login.css");
         return "login";
     }
-    
-     @GetMapping("/registrar")
-     public String registrar() {
-         return "usuario_form";
-     }
 
-     @GetMapping("/publicar")
-     public String publicar() {
-         return "publicar";
-     }
+    @GetMapping("/registrar")
+    public String registrar() {
+        return "usuario_form";
+    }
+
+    @GetMapping("/publicar")
+    public String publicar() {
+        return "publicar";
+    }
 }

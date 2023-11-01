@@ -7,12 +7,10 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
-    />
+      crossorigin="anonymous" />
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
-    />
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="/publicacion.css" />
     <title>Publicacion</title>
   </head>
@@ -24,8 +22,7 @@
             <img
               th:src="@{'/imagen/' + ${publicacion.imagenPublicacion.id}}"
               class="img-publicacion img-fluid rounded-start"
-              alt="publicacion"
-            />
+              alt="publicacion" />
           </div>
           <div class="col-md-8">
             <div class="card-header">
@@ -34,8 +31,7 @@
                   <img
                     th:src="@{'/imagen/perfil/' + ${publicacion.usuario.id}}"
                     class="img-perfil"
-                    alt="profile-image"
-                  />
+                    alt="profile-image" />
                 </div>
                 <div class="col">
                   <div class="row">
@@ -43,8 +39,7 @@
                       <a
                         class="name"
                         href="#"
-                        th:text="${publicacion.usuario.nombre}"
-                      ></a>
+                        th:text="${publicacion.usuario.nombre}"></a>
                     </div>
                   </div>
                   <div class="row">
@@ -61,19 +56,16 @@
                   <img
                     th:src="@{'/imagen/perfil/' + ${comentario.usuario.id}}"
                     class="img-perfil"
-                    alt="profile-image"
-                  />
+                    alt="profile-image" />
                 </div>
                 <div class="col-11">
                   <a
                     th:href="@{'/perfil/' + ${comentario.usuario.id}}"
                     class="name"
-                    th:text="${comentario.usuario.nombre}"
-                  ></a>
+                    th:text="${comentario.usuario.nombre}"></a>
                   <p
                     class="mensaje-contenedor"
-                    th:text="${comentario.texto}"
-                  ></p>
+                    th:text="${comentario.texto}"></p>
                 </div>
               </div>
             </div>
@@ -86,19 +78,16 @@
                     class="form-control"
                     placeholder="Comentar...."
                     aria-label="Recipient's username"
-                    aria-describedby="button-addon2"
-                  />
+                    aria-describedby="button-addon2" />
                   <input
                     type="number"
                     name="publicacionid"
                     th:value="${publicacion.id}"
-                    hidden
-                  />
+                    hidden />
                   <button
                     class="btn btn-outline-secondary"
                     type="submit"
-                    id="button-addon2"
-                  >
+                    id="button-addon2">
                     <i class="bi bi-file-arrow-up-fill"></i>
                   </button>
                 </div>
@@ -111,7 +100,6 @@
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"
-    ></script>
+      crossorigin="anonymous"></script>
   </body>
 </html>
