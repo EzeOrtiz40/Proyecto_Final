@@ -23,7 +23,7 @@
   <input type="text" class="nav-input" placeholder="Ingrese un nombre..." />
 
   <!-- <class="nav nav-masthead justify-content-center float-md-end"> -->
-  <a class="nav-link active" aria-current="page" th:href="@{/index}">Inicio</a>
+  <a class="nav-link active" aria-current="page" th:href="@{/}">Inicio</a>
   <a
     class="nav-link"
     th:if="${#request.isUserInRole('USER')}"
@@ -33,7 +33,12 @@
   <a class="nav-link" th:if="${#request.isUserInRole('USER')}" href="/logout"
     >Cerrar sesión</a
   >
-  <a class="nav-link" th:if="${#request.isUserInRole('ADMIN')}" href="/admin"
+
+  <a class="nav-link" th:if="${#request.isUserInRole('ADMIN')}" href="/logout"
+    >Cerrar sesión</a
+  >
+
+  <a class="nav-link" th:if="${#request.isUserInRole('ADMIN')}" href="/admin/dashboard"
     >Admin</a
   >
   <a

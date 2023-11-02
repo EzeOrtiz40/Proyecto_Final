@@ -11,6 +11,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import java.util.Date;
+
+
 import com.fashion.web.Enumeraciones.RolCategoria;
 import org.hibernate.annotations.GenericGenerator;
 import lombok.Data;
@@ -38,5 +40,7 @@ public class Publicacion {
 
     @Temporal(TemporalType.DATE)
     private Date fecha;
+
+    
 
 }

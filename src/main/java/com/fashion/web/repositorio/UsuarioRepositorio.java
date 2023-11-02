@@ -19,6 +19,23 @@ public interface UsuarioRepositorio extends JpaRepository<Usuario, Long>{
     @Query("SELECT n FROM Usuario n WHERE n.nombre = :nombre")
     public List<Usuario> buscarNombre(@Param("nombre") String nombre);
 
+
+    @Modifying
+    @Query("DELETE FROM Comentario c WHERE c.publicacion.usuario.id = :id")
+    public void eliminarComentariosPorUsuario(@Param("id") Long id);
+
+    @Modifying
+    @Query("DELETE FROM Publicacion p WHERE p.usuario.id = :id")
+    public void eliminarPublicacionesPorUsuario(@Param("id") Long id);
+
+    @Modifying
+    @Query("DELETE FROM Usuario u WHERE u.id = :id")
+    public void eliminarUsuario(@Param("id") Long id);
+
+    // @Query(" DELETE u, p, c FROM Usuarios u LEFT JOIN Publicaciones p ON u.id = p.usuario.id LEFT JOIN Comentarios c ON p.id = c.publicacion.id WHERE u.id = :id ")
+    // public Usuario eliminarUsuario(@Param("usuario") Usuario usuario);
+
+
     @Query("SELECT e FROM Usuario e WHERE e.email = :email")
     public Usuario buscarEmail(@Param("email") String email);
 

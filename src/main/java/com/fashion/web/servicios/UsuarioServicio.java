@@ -49,6 +49,13 @@ public class UsuarioServicio implements UserDetailsService {
 
     }
 
+    public void eliminarUsuarioYRelaciones(Long id) {
+        usuarioRepositorio.eliminarComentariosPorUsuario(id);
+        usuarioRepositorio.eliminarPublicacionesPorUsuario(id);
+        usuarioRepositorio.eliminarUsuario(id);
+    }
+
+
     public void validarCampos(String nombre, String apellido, String email, String password, String password2)
             throws MegustaException {
 

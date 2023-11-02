@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio Admin</title>
+
+    <style>
+    body{
+        background-color: beige;
+    }
+   
+
+    header {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 100px; /* Ajusta la altura según sea necesario */   
+    }
+
+    .btn1{
+        border-bottom: 10px;
+    }
+
+    .buttons-container{
+        display: flex;
+    }
+
+   
+
+    
+.btn1,
+.btn2,
+.btn3,
+.btn4 {
+    flex: 1;
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #fff;
+    border: 2px solid #b63636;
+    background-color: #550707;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    transition: all 0.3s;
+    margin: 5px;
+    width: 200px; 
+}
+
+.buttons-container {
+    display: flex;
+    width: 100%;
+}
+
+.btn1:hover,
+.btn2:hover,
+.btn3:hover,
+.btn4:hover {
+    background-color: #555;
+    border-color: #555;
+}
+
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+        <h1>Panel de Administrador</h1>
+    </header>
+    <div class="buttons-container">
+
+        <a href="/perfil">
+            <button class="btn4">PERFIL</button>
+        </a>
+
+<!--       
+        <div th:each="usuarios : ${usuario}">
+            
+            <p class="card-text" th:text="${usuario.nombre}"> </p>
+
+        </div> -->
+
+        <!-- <a th:href="@{usuario.getN}" class="btn2">Ver usuarios</a><br><br>
+
+        <a th:href="@{/noticia/ultimasnoticias}" class="btn3">Ver publicaciones</a><br><br> -->
+    
+    </div>
+
+    
+    <div class="div__container" th:each="usuario : ${usuarios}">
+            
+        <table class="div__table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Email</th>
+                    <!-- <th scope="col">Password</th> -->
+                    <th scope="col">F-Creacion</th>
+                    <!-- <th scope="col">imagen</th> -->
+                    <th scope="col">Modificar</th>
+                </tr>      
+            </thead>
+            
+            <tbody th:each="usuario : ${usuarios}">
+                <tr>
+                    <th scope="row" th:text="${usuario.id}"></th>
+                    <td th:text="${usuario.nombre}"></td>
+                    <td th:text="${usuario.apellido}"></td>
+                    <td th:text="${usuario.email}"></td>
+                    <td th:text="${usuario.fecha_creacion}"></td>
+                    <td>
+                         <a th:href="@{/usuario/baja/__${usuario.id}__}"><i class="link" th:href="@{'/usuario/baja/' + ${id}}" > </i>Modificar</a>
+                    </td> 
+
+                   
+                </tr>
+</tbody>
+            
+        </table>
+        
+    </div>
+
+    
+
+    </body>
+
+</html>

@@ -6,6 +6,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fashion.web.entidades.Imagen;
 import com.fashion.web.entidades.Usuario;
 import com.fashion.web.exceptiones.MegustaException;
+import com.fashion.web.repositorio.UsuarioRepositorio;
 import com.fashion.web.servicios.ImagenServicio;
 import com.fashion.web.servicios.UsuarioServicio;
 
@@ -32,6 +34,9 @@ public class UsuarioControlador {
     @Autowired
     private ImagenServicio imagenServicio;
 
+    @Autowired
+    private UsuarioRepositorio ur;
+
     @GetMapping("/buscar/{id}")
     public Usuario getUsuarioPorId(@PathVariable Long id) {
         return usuarioServicio.buscarUsuarioPorId(id);
@@ -41,6 +46,23 @@ public class UsuarioControlador {
     public List<Usuario> getUsuarios() {
         return usuarioServicio.listarUsuarios();
     }
+
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @GetMapping("/baja/{id}")
+    public String eliminarUsuario(@PathVariable("id") Long id, ModelMap model){
+
+        usuarioServicio.buscarUsuarioPorId(id);
+        ur.eliminarComentariosPorUsuario(id);
+        ur.eliminarPublicacionesPorUsuario(id);
+        ur.eliminarUsuario(id);
+
+
+        List<Usuario> usuarios = usuarioServicio.listarUsuarios();
+        model.addAttribute("usuarios", usuarios);
+
+        return "inicioAdmin";
+    }
+    
 
     @GetMapping("/email/{email}")
     public Usuario getEmail(@PathVariable String email) {
@@ -95,7 +117,8 @@ public class UsuarioControlador {
             usuarioServicio.agregar(nombre, apellido, email, password, password2, imagen);
             model.put("exito", "Usuario creado correctamente");
 
-            return "login";
+            return "redirect:/perfil";
+
 
         } catch (MegustaException e) {
             model.put("error", e.getMessage());
