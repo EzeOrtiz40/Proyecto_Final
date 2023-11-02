@@ -21,42 +21,12 @@
 
     <div class="container">
       <div class="separator"></div>
-
-      <div class="profile-data row">
-        <div class="profile-image-container col-4">
-          <img
-            th:src="@{'/imagen/perfil/' + ${id}}"
-            alt="profile-image"
-            id="profile-image" />
-        </div>
-        <div class="profile-info col-8">
-          <div class="row align-items-center">
-            <div class="interacciones col-12">
-              <a href="#" class="name" th:text="${nombre}"></a>
-
-              <button type="button" class="btn btn-light btn-sm offset-md-1">
-                <i class="bi bi-three-dots"></i>
-              </button>
-            </div>
-          </div>
-          <div class="separator"></div>
-          <div class="separator"></div>
-          <div class="row">
-            <h5>
-              ¡Hola, soy
-              <span class="spanText" th:text="${nombre + ' ' + apellido}"></span
-              >! 👋
-            </h5>
-            <p>¡Bienvenido a mi perfil de Fashion!</p>
-          </div>
-        </div>
-      </div>
       <div class="separator"></div>
       <div th:replace="fragments/formPublicacion :: div"></div>
       <div class="row-container">
         <div class="col"><h4>Ultimas publicaciones:</h4></div>
       </div>
-      <div th:replace="fragments/publicacionFragment :: div"></div>
+      <select th:replace="fragments/section :: select "></select>
       <div class="separator"></div>
     </div>
     <script src="/js/meGusta.js"></script>

@@ -1,11 +1,11 @@
-<nav class="container-nav">
+<!-- <nav class="container-nav">
   <a href="#" class="logo">Nombre</a>
 
   <!-- <input
     type="text"
     th:href="${/usuario/{nombre}/lista}"
     class="nav-input"
-    placeholder="Ingrese un nombre..." /> -->
+    placeholder="Ingrese un nombre..." /> 
 
   <ul class="nav-list">
     <li><a href="/" class="nav-item">Inicio</a></li>
@@ -15,4 +15,46 @@
     <li><a href="/perfil" class="nav-item">Perfil</a></li>
     <li><a href="/admin" class="nav-item">Admin</a></li>
   </ul>
+</nav> -->
+
+<nav class="container-nav">
+  <a href="#" class="logo">Nombre</a>
+
+  <input type="text" class="nav-input" placeholder="Ingrese un nombre..." />
+
+  <!-- <class="nav nav-masthead justify-content-center float-md-end"> -->
+  <a class="nav-link active" aria-current="page" th:href="@{/index}">Inicio</a>
+  <a
+    class="nav-link"
+    th:if="${#request.isUserInRole('USER')}"
+    th:href="@{/perfil}"
+    >Perfil</a
+  >
+  <a class="nav-link" th:if="${#request.isUserInRole('USER')}" href="/logout"
+    >Cerrar sesión</a
+  >
+  <a class="nav-link" th:if="${#request.isUserInRole('ADMIN')}" href="/admin"
+    >Admin</a
+  >
+  <a
+    class="nav-link"
+    th:unless="${#request.isUserInRole('USER') or #request.isUserInRole('ADMIN')}"
+    href="/login"
+    >Iniciar sesión</a
+  >
+  <a
+    class="nav-link"
+    th:unless="${#request.isUserInRole('USER') or #request.isUserInRole('ADMIN')}"
+    th:href="@{/registrar}"
+    >Registrate</a
+  >
+
+  <!-- <ul class="nav-list">
+    <li><a href="/" class="nav-item">Inicio</a></li>
+    <li><a href="/login" class="nav-item">Iniciar sesion</a></li>
+    <li><a href="/logout" class="nav-item">Cerrar sesion</a></li>
+    <li><a href="/registrar" class="nav-item">Registrate</a></li>
+    <li><a href="/perfil" class="nav-item">Perfil</a></li>
+    <li><a href="/admin" class="nav-item">Admin</a></li>
+  </ul> -->
 </nav>
